@@ -1,7 +1,4 @@
 function Movimentacao (identificador, data, campus, equipamento, sala, login){
-    // Private variables and functions that only
-    // ..other private or public functions may access
-    // ..and cannot be accessed outside this Module
 	var self= this;
 	this.identificador = identificador;
 	this.data = data;
@@ -10,9 +7,6 @@ function Movimentacao (identificador, data, campus, equipamento, sala, login){
 	this.sala = sala;
 	this.login = login;
 
-    // All the properties and methods contained by
-    // ..this object being returned will be public
-    // ..and will be accessible in the global scope.
 	return {
 		getIdentificador : function(){
 			return self.identificador;

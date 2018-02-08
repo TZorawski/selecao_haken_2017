@@ -47,17 +47,5 @@ function Movimentacao (identificador, data, campus, equipamento, sala, login){
 	}
 };
 
+module.exports = Movimentacao;
 
-// ############### TESTE ###############
-/*
-var movimentacao = new Movimentacao(123, '21091998', 'Campo Mourao', 123, 123, 'acabte');
-console.log(movimentacao.getIdentificador());
-console.log(movimentacao.getData());
-console.log(movimentacao.getCampus());
-console.log(movimentacao.getEquipamento());
-console.log(movimentacao.getSala());
-console.log(movimentacao.getLogin());
-
-movimentacao.setLogin('tzorawski');
-console.log(movimentacao.getLogin());
-*/

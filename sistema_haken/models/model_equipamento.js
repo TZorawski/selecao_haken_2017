@@ -48,16 +48,4 @@ function equipamento (identificador, dataCompra, descricao, status, campusOrigem
 	}
 };
 
-/*------------TESTE----------------*/
-
-
-// var equipamento = new equipamento('1', '1999/1/1', 'exemplo', 'Ocupado', 'Campo Mourao', '123456');
-// console.log(equipamento.getIdentificador());
-// console.log(equipamento.getDataCompra());
-// console.log(equipamento.getDescricao());
-// console.log(equipamento.getStatus());
-// console.log(equipamento.getCampusOrigem());
-// console.log(equipamento.getLogin());
-
-// equipamento.setLogin('654321');
-// console.log(equipamento.getLogin());
+module.exports = equipamento;

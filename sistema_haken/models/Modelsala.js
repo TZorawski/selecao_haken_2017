@@ -32,17 +32,4 @@ function Sala(identificador,numero,bloco,login){
 		}
 	}
 };
-
-
-/*var sala = new Sala(123,101,'B',102654);
-console.log(sala.getIdentificador());
-console.log(sala.getNumero());
-console.log(sala.getBloco());
-console.log(sala.getLogin());
-
-sala.setLogin('Apatriarca');
-console.log(sala.getLogin());
-*/
-
-
-
+module.exports = Sala;

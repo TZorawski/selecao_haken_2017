@@ -37,31 +37,3 @@ function Usuario(login, nome, senha) {
 };
 
 module.exports = Usuario;
-
-/****************** Testes ******************/
-/*
-var user = new Usuario('@zoooooio', 'Everton J.Abreu', '@ever1512');
-
-console.log('user 1');
-
-console.log('login: ' + user.getLogin());
-console.log('nome: ' + user.getNome());
-console.log('senha: ' + user.getSenha());
-
-console.log('\n'+ 'user 2' + '\n');
-
-user.setLogin('@Tzora');
-user.setNome('Thais Zorawski');
-user.setSenha('@tz1234');
-
-for(var i = 0, array = user.getUser(); i < array.length; i++){
-	console.log(array[i]);
-}
-
-console.log('\n' + 'user 3' + '\n');
-
-user.setUser('@Gord', 'Otavio Goes', '@gord1234');
-for(var i = 0, array = user.getUser(); i < array.length; i++){
-	console.log(array[i]);
-}
-*/

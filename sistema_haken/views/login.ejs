@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html class = "no-js">
+
+<head>
+  <title> Login - Gerenciamento de Patrimônios </title>
+
+    <meta charset = "UTF-8">
+    <meta name = "description" content = "">
+    <meta name = "viewport" content = "width=device-width">
+
+    <link rel = "icon" href = "../public/images/logo-login.png" type = "image/png">
+
+    <link rel = "stylesheet" href = "http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700">
+    <link rel = "stylesheet" href = "http://fonts.googleapis.com/css?family=Oswald:400,300,700">
+
+    <link rel = "stylesheet" href = "../public/javascripts/libs/css/ui-lightness/jquery-ui-1.9.2.custom.min.css">
+
+    <link rel = "stylesheet" href = "../public/stylesheets/font-awesome.min.css">
+    <link rel = "stylesheet" href = "../public/stylesheets/bootstrap.min.css">
+    <link rel = "stylesheet" href = "../public/stylesheets/target-admin.css">
+    <link rel = "stylesheet" href = "../public/stylesheets/custom.css">
+
+    <script src = "../public/javascripts/libs/jquery-1.10.1.min.js"></script>
+    <script src = "../public/javascripts/libs/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src = "../public/javascripts/libs/bootstrap.min.js"></script>
+    <script src = "../public/javascripts/target-admin.js"></script>
+  </head>
+
+<body class = "account-bg">
+  <div class = "navbar">
+    <div class = "container">
+        
+      <div class = "navbar-header">
+        <a class = "navbar-brand navbar-brand-image" href = "index.ejs">
+          <img src = "../public/images/logo.png" alt = "Site Logo">
+        </a>
+      </div>
+      
+      <ul class = "nav navbar-nav navbar-right">   
+        <li>
+          <a href = "index.ejs">
+            <i class = "fa fa-angle-double-left nav-icon"></i> 
+              Voltar à Página Principal
+          </a>
+        </li> 
+      </ul>
+
+    </div> <!-- /.container -->
+  </div> <!-- /.navbar -->
+
+  <hr class = "account-header-divider">
+
+  <div class = "account-wrapper">
+
+    <div class = "account-logo">
+      <img src = "../public/images/logo-login.png" alt = "Logo Site">
+    </div>
+
+    <div class = "account-body">
+      <h3 class = "account-body-title"> Bem-Vindo ao Sistema </h3>
+      <h5 class = "account-body-subtitle"> Por favor, faça o login para acessar as páginas de cadastro, edição, remoção e movimentação... </h5>
+
+      <form class = "form account-form" method = "POST" action = "">
+        <div class = "form-group">
+          <label for = "login-username" class = "placeholder-hidden"> Usuário </label>
+          <input type = "text" class = "form-control" name = "login" placeholder = "Usuário" tabindex = "1" required>
+        </div>
+
+        <div class = "form-group">
+          <label for = "login-password" class = "placeholder-hidden"> Senha </label>
+          <input type = "password" class = "form-control" name = "senha" placeholder = "Senha" tabindex = "2" required>
+        </div>
+
+        <div class = "form-group">
+        	<button type="submit" class="btn btn-primary btn-block btn-lg" tabindex="3">
+             Fazer Login &nbsp; <i class="fa fa-play-circle"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="account-footer">
+      <p>
+      Não possui uma conta? &nbsp;
+      <a href="cadastro.ejs" class="">Inscreva-se agora »</a>
+      </p>
+    </div> <!-- /.account-footer -->
+
+  </div> <!-- /.account-wrapper -->
+</body>
+
+</html>

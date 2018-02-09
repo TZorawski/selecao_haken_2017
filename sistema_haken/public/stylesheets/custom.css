@@ -17,6 +17,10 @@
     border: 1px solid;
 }
 
+.no-border a {
+    border: none !important;
+}
+
 .pull-right .oi, .oi {
     border: none;
     text-decoration: none !important;

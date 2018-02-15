@@ -1,0 +1,429 @@
+	<!DOCTYPE html>
+<html class = "no-js">
+  <head>
+    <title> Pesquisa - Gerenciamento de Patrimônios </title>
+
+    <meta charset = "UTF-8">
+    <meta name = "description" content = "">
+    <meta name = "viewport" content = "width=device-width">
+
+		<link rel = "icon" href = "../public/images/logo-login.png" type = "image/png">
+
+    <link rel = "stylesheet" href = "http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700">
+    <link rel = "stylesheet" href = "http://fonts.googleapis.com/css?family=Oswald:400,300,700">
+
+    <link rel = "stylesheet" href = "../public/javascripts/libs/css/ui-lightness/jquery-ui-1.9.2.custom.min.css">
+    <link rel = "stylesheet" href = "../public/javascripts/plugins/icheck/skins/minimal/blue.css">
+    <link rel = "stylesheet" href = "../public/javascripts/plugins/select2/select2.css">
+    <link rel = "stylesheet" href = "../public/javascripts/plugins/datepicker/datepicker.css">
+
+    <link rel = "stylesheet" href = "../public/stylesheets/font-awesome.min.css">
+    <link rel = "stylesheet" href = "../public/stylesheets/bootstrap.min.css">
+    <link rel = "stylesheet" href = "../public/stylesheets/target-admin.css">
+    <link rel = "stylesheet" href = "../public/stylesheets/custom.css">
+
+    <script src = "../public/javascripts/libs/jquery-1.10.1.min.js"></script>
+    <script src = "../public/javascripts/libs/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src = "../public/javascripts/libs/bootstrap.min.js"></script>
+    <script src = "../public/javascripts/target-admin.js"></script>
+    <script src = "../public/javascripts/demos/form-extended.js"></script>
+
+    <script src = "../public/javascripts/plugins/magnific/jquery.magnific-popup.min.js"></script>
+    <script src = "../public/javascripts/plugins/howl/howl.js"></script>
+    <script src = "../public/javascripts/demos/ui-notifications.js"></script>
+    <script src = "../public/javascripts/plugins/autosize/jquery.autosize.min.js"></script>
+    <script src = "../public/javascripts/plugins/select2/select2.js"></script>
+    <script src = "../public/javascripts/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src = "../public/javascripts/plugins/datatables/DT_bootstrap.js"></script>
+    <script src = "../public/javascripts/plugins/tableCheckable/jquery.tableCheckable.js"></script>
+    <script src = "../public/javascripts/plugins/icheck/jquery.icheck.min.js"></script>
+    <script src = "../public/javascripts/plugins/icheck/jquery.icheck.js"></script>
+		<script src = "../public/javascripts/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src = "../public/javascripts/plugins/simplecolorpicker/jquery.simplecolorpicker.js"></script>
+    <script src = "../public/javascripts/plugins/textarea-counter/jquery.textarea-counter.js"></script>
+  </head>
+
+  <body>
+    <div class = "navbar">
+      <div class = "container">
+
+        <div class = "navbar-header">
+          <a class = "navbar-brand navbar-brand-image" href = "index.ejs">
+            <img src = "../public/images/logo.png" alt = "Site Logo">
+          </a>
+        </div>
+
+        <ul class = "nav navbar-nav navbar-right">
+          <li class = "dropdown navbar-profile">
+            <a class = "dropdown-toggle" data-toggle = "dropdown" href = "javascript:;">
+              <i class = "fa fa-user nav-icon"></i> Bem-Vindo Nome_Usuário &nbsp;
+              <i class="fa fa-caret-down"></i>
+            </a>
+
+            <ul class = "dropdown-menu" role = "menu">
+              <li>
+                <a href = "javascript:;">
+                  <i class = "fa fa-sign-out"></i>
+                  &nbsp;&nbsp; Logout
+                </a>
+              </li>
+            </ul>
+
+          </li>
+        </ul>
+
+      </div> <!-- /.container -->
+    </div> <!-- /.navbar -->
+
+    <div class = "mainbar">
+      <div class = "container">
+
+        <button type = "button" class = "btn mainbar-toggle" data-toggle = "collapse" data-target = ".mainbar-collapse">
+          <i class = "fa fa-bars"></i>
+        </button>
+
+        <div class = "mainbar-collapse collapse">
+          <ul class = "nav navbar-nav mainbar-nav">
+
+            <li>
+              <a href = "index.ejs">
+                <i class = "fa fa-home"></i>
+                Home...
+              </a>
+            </li>
+
+            <li class = "active">
+              <a href = "pesquisa.ejs">
+                <i class = "fa fa-search"></i>
+                Pesquisar...
+              </a>
+            </li>
+
+            <li class = "dropdown">
+              <a href = "#about" class = "dropdown-toggle" data-toggle = "dropdown" data-hover = "dropdown">
+                <i class = "fa fa-plus-circle"></i>
+                Cadastro
+                <span class = "caret"></span>
+              </a>
+
+              <ul class = "dropdown-menu">
+                <li><a href = "cad-equipamento.ejs"><i class = "fa fa-desktop nav-icon"></i> Equipamentos </a></li>
+                <li><a href = "cad-sala.ejs"><i class = "fa fa-building-o nav-icon"></i> Salas/Laboratórios </a></li>
+              </ul>
+            </li>
+
+            <li class = "dropdown">
+              <a href = "#contact" class = "dropdown-toggle" data-toggle = "dropdown" data-hover = "dropdown">
+                <i class = "fa fa-external-link"></i>
+                Opções Extras
+                <span class = "caret"></span>
+              </a>
+
+              <ul class = "dropdown-menu" role = "menu">
+                <li>
+                  <a href = "movimentacao.ejs">
+                    <i class = "fa fa-exchange nav-icon"></i>
+                    Mover Equipamento
+                  </a>
+                </li>
+
+                <li>
+                  <a href = "emprestimos.ejs">
+                    <i class = "fa fa-arrow-right nav-icon"></i>
+                    Empréstimos
+                  </a>
+                </li>
+
+                <li class = "divider"></li>
+
+                <li class = "dropdown-submenu">
+                  <a tabindex = "-1" href = "#">
+                    <i class = "fa fa-list-alt nav-icon"></i>
+                    Relatórios
+                  </a>
+
+                  <ul class = "dropdown-menu">
+                    <li>
+                      <a href = "relatorio.ejs">
+                        <i class = "fa fa-list-alt nav-icon"></i>
+                        Relatório Geral
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href = "historico.ejs">
+                        <i class = "fa fa-clock-o nav-icon"></i>
+                        Histórico
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li style = "float: right">
+              <a href = "login.ejs">
+                <i class = "fa fa-sign-in"></i> Login
+              </a>
+            </li>
+
+            <li style = "float: right">
+              <a href = "cadastro.ejs">
+                <i class = "fa fa-user-plus"></i> Cadastro
+              </a>
+            </li>
+
+          </ul>
+        </div>
+
+      </div> <!-- /.container -->
+    </div> <!-- /.mainbar -->
+
+		<div class = "container">
+	    <div class = "content">
+	      <div class = "content-container">
+
+	        <div class = "content-header">
+	          <h2 class = "content-header-title"> PESQUISA DE EQUIPAMENTOS E SALAS </h2>
+	          <ol class = "breadcrumb">
+	            <li class = "active"> Vizualize com ajuda de filtros de seleção os equipamentos e salas cadastrados, além de editar ou remover os dados... </li>
+	          </ol>
+	        </div>
+
+					<ul id = "myTab" class = "nav nav-pills">
+            <li class = "active">
+              <a href = "#equipamentos" data-toggle = "tab"> Equipamentos </a>
+            </li>
+            <li>
+              <a href = "#salas" data-toggle = "tab"> Salas </a>
+            </li>
+          </ul>
+
+					<div id = "myTabContent" class = "tab-content">
+		        <div class = "row tab-pane fade in active" id = "equipamentos">
+		          <div class = "col-md-12">
+                <table class = "table table-striped table-bordered table-hover table-highlight table-checkable" data-provide = "datatable"
+                  data-info = "true" data-search = "true" data-paginate = "true">
+
+                  <thead>
+                    <tr>
+                      <th data-filterable = "true" data-sortable = "true"> ID </th>
+                      <th data-filterable = "true" data-sortable = "true"> Origem </th>
+                      <th data-filterable = "true" data-sortable = "true" style = "width: 150px;"> Data Compra </th>
+                      <th data-filterable = "true" data-sortable = "true" style = "width: 90px;"> Status </th>
+                      <th data-filterable = "true" data-sortable = "true"> Descrição </th>
+											<th data-filterable = "false" data-sortable = "false"> Opções </th>
+
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+											<td> 11111 </td>
+											<td> Campo Mourão </td>
+											<td> 14/02/2018 </td>
+											<td class = "text-center"><span class = "label label-success"> Disponível </span></td>
+											<td> Computador </td>
+											<td class = "text-center">
+                        <a data-toggle = "modal" href = "#basicEquipamento" class = "btn btn-xs btn-warning ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Editar Equipamento">
+                          <i class = "fa fa-pencil"></i>
+                        </a>
+												<a class = "btn btn-xs btn-danger howlerSuccess ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Excluir Equipamento" data-type = "success" data-icon = "fa fa-check-square-o">
+                          <i class = "fa fa-times"></i>
+                        </a>
+                      </td>
+										</tr>
+
+										<tr>
+											<td> 22222 </td>
+											<td> Maringá </td>
+											<td> 08/01/2018 </td>
+											<td class = "text-center"><span class = "label label-tertiary"> Emprestado </span></td>
+											<td> Datashow </td>
+											<td class = "text-center">
+												<a data-toggle = "modal" href = "#basicEquipamento" class = "btn btn-xs btn-warning ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Editar Equipamento">
+                          <i class = "fa fa-pencil"></i>
+                        </a>
+												<a class = "btn btn-xs btn-danger howlerFail ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Excluir Equipamento" data-type = "danger" data-icon = "fa fa-ban">
+                          <i class = "fa fa-times"></i>
+                        </a>
+                      </td>
+										</tr>
+                  </tbody>
+
+                </table>
+		          </div>
+		        </div>
+
+						<div class = "row tab-pane fade" id = "salas">
+		          <div class = "col-md-8">
+                <table class = "table table-striped table-bordered table-hover table-highlight table-checkable" data-provide = "datatable"
+                  data-info = "true" data-search = "true" data-paginate = "true">
+
+									<thead>
+                    <tr>
+                      <th data-filterable = "true" data-sortable = "true"> Bloco </th>
+                      <th data-filterable = "true" data-sortable = "true"> Número </th>
+											<th> Opções </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+											<td> E </td>
+											<td> 100 </td>
+											<td class = "text-center">
+                        <a data-toggle = "modal" href = "#basicSala" class = "btn btn-xs btn-warning ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Editar Sala">
+                          <i class="fa fa-pencil"></i>
+                        </a>
+												<a class = "btn btn-xs btn-danger howlerSuccess ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Excluir Sala" data-type = "success" data-icon = "fa fa-check-square-o">
+                          <i class = "fa fa-times"></i>
+                        </a>
+                      </td>
+										</tr>
+                  </tbody>
+
+                </table>
+		          </div>
+		        </div>
+					</div>
+
+	      </div> <!-- /.content-container -->
+	    </div> <!-- /.content -->
+	  </div> <!-- /.container -->
+
+	  <footer class = "footer"></footer>
+
+		<div id = "basicEquipamento" class = "modal fade">
+      <div class = "modal-dialog">
+        <div class = "modal-content">
+
+          <div class = "modal-header">
+            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true"> &times; </button>
+            <h3 class = "modal-title"> EDIÇÃO DE EQUIPAMENTO </h3>
+          </div>
+
+          <div class = "modal-body">
+						<form method = "POST" action = "" class = "form-horizontal">
+
+							<div class = "form-group">
+
+								<label class = "col-md-3"> Identificador </label>
+
+								<div class = "col-md-3">
+									<input type = "text" name = "" placeholder = "Ex. 14123" class = "form-control" disabled required>
+								</div>
+
+							</div> <!-- /.form-group -->
+
+							<div class = "form-group">
+
+								<label class = "col-md-3"> Data da Compra </label>
+
+								<div class = "col-md-4">
+									<div class = "input-group date ui-datepicker">
+										<input id = "date-2" name = "" class = "form-control parsley-validated parsley-error" type = "text" required>
+										<span class = "input-group-addon"> <i class = "fa fa-calendar"></i> </span>
+									</div>
+								</div>
+
+							</div> <!-- /.form-group -->
+
+							<div class = "form-group">
+								<label class = "col-md-3"> Câmpus de Origem </label>
+
+								<div class = "col-md-7">
+										<select name = "" id = "s2_basic" class = "form-control">
+											<optgroup label = "Câmpus - UTFPR">
+												<option value = "Campo Mourão"> Campo Mourão </option>
+												<option value = "Apucarana"> Apucarana </option>
+												<option value = "Cornélio Procópio"> Cornélio Procópio </option>
+												<option value = "Curitiba"> Curitiba </option>
+												<option value = "Dois Vizinhos"> Dois Vizinhos </option>
+												<option value = "Francisco Beltrão"> Francisco Beltrão </option>
+												<option value = "Guarapuava"> Guarapuava </option>
+												<option value = "Londrina"> Londrina </option>
+												<option value = "Medianeira"> Medianeira </option>
+												<option value = "Pato Branco"> Pato Branco </option>
+												<option value = "Ponta Grossa"> Ponta Grossa </option>
+												<option value = "Santa Helena"> Santa Helena </option>
+												<option value = "Toledo"> Toledo </option>
+											</optgroup>
+										</select>
+								</div>
+							</div> <!-- /.form-group -->
+
+							<div class = "form-group">
+								<label class = "col-md-3"> Descrição </label>
+
+								<div class = "col-md-7">
+									<textarea id = "about-textarea" name = "" class = "form-control" style = "margin: 0px 0.5px 0px 0px; width: 100%; height: 200px;"> </textarea>
+								</div>
+							</div> <!-- /.form-group -->
+
+							<br>
+
+							<div class = "form-group">
+								<div class = "col-md-7 col-md-push-3">
+									<button type = "reset" class = "btn btn-default"> LIMPAR </button>
+									&nbsp;
+									<button type = "submit" class = "btn btn-primary"> CADASTRAR </button>
+								</div>
+							</div> <!-- /.form-group -->
+
+						</form>
+          </div>
+
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+		<div id = "basicSala" class = "modal fade">
+      <div class = "modal-dialog">
+        <div class = "modal-content">
+
+          <div class = "modal-header">
+            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true"> &times; </button>
+            <h3 class = "modal-title"> EDIÇÃO DE SALA </h3>
+          </div>
+
+          <div class = "modal-body">
+
+						<form method = "POST" action = "" class = "form-horizontal">
+
+							<div class = "form-group">
+								<label class = "col-md-3"> Bloco </label>
+
+								<div class = "col-md-7">
+									<input type = "text" maxlength = "1"  placeholder = "Ex. A, D, E ..." name = "bloco" class = "form-control" style = "text-transform:uppercase" required/>
+								</div>
+							</div> <!-- /.form-group -->
+
+							<div class = "form-group">
+								<label class = "col-md-3"> Número </label>
+
+								<div class = "col-md-7">
+									<input type = "text" maxlength = "3" placeholder = "Ex. 101" name = "numero" class = "form-control" required/>
+								</div>
+							</div> <!-- /.form-group -->
+
+							<br />
+
+							<div class = "form-group">
+								<div class = "col-md-7 col-md-push-3">
+									<button type = "reset" class = "btn btn-default"> LIMPAR </button>
+									&nbsp;
+									<button type = "submit" class = "btn btn-primary"> CADASTRAR </button>
+								</div> <!-- /.col -->
+
+							</div> <!-- /.form-group -->
+
+						</form>
+
+          </div>
+
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  </body>
+</html>

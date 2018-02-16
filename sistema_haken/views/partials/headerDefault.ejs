@@ -1,0 +1,128 @@
+<div class = "navbar">
+  <div class = "container">
+
+    <div class = "navbar-header">
+      <a class = "navbar-brand navbar-brand-image" href = "/">
+        <img src = "/images/logo.png" alt = "Site Logo">
+      </a>
+    </div>
+
+    <ul class = "nav navbar-nav navbar-right">
+      <li class = "dropdown navbar-profile">
+        <a class = "dropdown-toggle" data-toggle = "dropdown" href = "javascript:;">
+          <i class = "fa fa-user nav-icon"></i>
+          Bem-Vindo Nome_Usuário &nbsp;
+          <i class = "fa fa-caret-down"></i>
+        </a>
+
+        <ul class = "dropdown-menu" role = "menu">
+          <li>
+            <a href = "javascript:;">
+              <i class = "fa fa-sign-out"></i>
+              &nbsp;&nbsp; Logout
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+  </div> <!-- /.container -->
+</div> <!-- /.navbar -->
+
+<div class = "mainbar">
+  <div class = "container">
+    <div class = "mainbar-collapse collapse">
+      <ul class = "nav navbar-nav mainbar-nav">
+
+        <li class = "home">
+          <a href = "/">
+            <i class = "fa fa-home"></i>
+            Home...
+          </a>
+        </li>
+
+        <li class = "pesquisa">
+          <a href = "/pesquisa">
+            <i class = "fa fa-search"></i>
+            Pesquisar...
+          </a>
+        </li>
+
+        <li class = "cadastro dropdown">
+          <a class = "dropdown-toggle" data-toggle = "dropdown" data-hover = "dropdown">
+            <i class = "fa fa-plus-circle"></i>
+            Cadastro
+            <span class = "caret"></span>
+          </a>
+
+          <ul class = "dropdown-menu">
+            <li><a href = "/cad_equipamento"><i class = "fa fa-desktop nav-icon"></i> Equipamentos </a></li>
+            <li><a href = "/cad_sala"><i class = "fa fa-building-o nav-icon"></i> Salas/Laboratórios </a></li>
+          </ul>
+        </li>
+
+        <li class = "opcoes dropdown">
+          <a class = "dropdown-toggle" data-toggle = "dropdown" data-hover = "dropdown">
+            <i class = "fa fa-external-link"></i>
+            Opções Extras
+            <span class = "caret"></span>
+          </a>
+
+          <ul class = "dropdown-menu" role = "menu">
+            <li>
+              <a href = "/movimentacao">
+                <i class = "fa fa-exchange nav-icon"></i>
+                Mover Equipamento
+              </a>
+            </li>
+
+            <li>
+              <a href = "/emprestimos">
+                <i class = "fa fa-arrow-right nav-icon"></i>
+                Empréstimos
+              </a>
+            </li>
+
+            <li class = "divider"></li>
+
+            <li class = "dropdown-submenu">
+              <a tabindex = "-1" href = "#">
+                <i class = "fa fa-list-alt nav-icon"></i>
+                Relatórios
+              </a>
+
+              <ul class = "dropdown-menu">
+                <li>
+                  <a href = "/relatorio">
+                    <i class = "fa fa-list-alt nav-icon"></i>
+                    Relatório Geral
+                  </a>
+                </li>
+
+                <li>
+                  <a href = "/historico">
+                    <i class = "fa fa-clock-o nav-icon"></i>
+                    Histórico
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class = "login" style = "float: right">
+          <a href = "/login">
+            <i class = "fa fa-sign-in"></i> Login
+          </a>
+        </li>
+
+        <li class = "cadastro" style = "float: right">
+          <a href = "/cadastro">
+            <i class = "fa fa-user-plus"></i> Cadastro
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div> <!-- /.container -->
+</div> <!-- /.mainbar -->

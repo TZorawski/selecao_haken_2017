@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class = "no-js">
+	<head>
+    <title> Cadastro de <%= title %> | Gerenciamento de Patrimônios </title>
+		<% include partials/head %>
+
+
+
+		<script>
+		  $(document).ready(function() {
+        $('.cadastro').addClass("active");
+        $('<%= scriptButton %>').addClass("active");
+		    $('<%= scriptTab %>').addClass("in active");
+		  });
+		</script>
+  </head>
+
+  <body>
+		<% include partials/headerDefault %>
+
+    <div class = "container">
+      <div class = "content">
+        <div class = "content-container">
+
+          <div class = "content-header">
+            <h2 class = "content-header-title"> CADASTRO DE EQUIPAMENTOS & SALAS </h2>
+            <ol class = "breadcrumb">
+              <li><a href = "/"> Home </a></li>
+              <li><a href = "javascript:;"> Cadastro </a></li>
+              <li class = "active"> <%= title %> </li>
+            </ol>
+          </div>
+
+          <div class = "row">
+
+            <div class = "col-md-3 col-sm-4">
+              <ul id = "myTab" class = "nav nav-pills nav-stacked">
+
+                <li id = "cad-equipamento">
+                  <a href = "/cad_equipamento">
+                    <i class = "fa fa-desktop"></i>
+                    &nbsp;&nbsp;Cadastro de Equipamentos
+                  </a>
+                </li>
+
+                <li id = "cad-sala">
+                  <a href = "/cad_sala">
+                    <i class = "fa fa-building-o"></i>
+                    &nbsp;&nbsp;Cadastro de Salas
+                  </a>
+                </li>
+
+              </ul> <br>
+            </div>
+
+            <div class = "col-md-9 col-sm-8">
+              <div class = "tab-content stacked-content">
+
+                <div class = "tab-pane fade" id = "equipamento-tab">
+                  <h3 class = ""> Cadastro de Novos Equipamentos </h3>
+                  <hr/>
+                  <br/>
+
+                  <form method = "POST" action = "" class = "form-horizontal">
+
+                    <div class = "form-group">
+
+                      <label class = "col-md-3"> identificador </label>
+
+                      <div class = "col-md-3">
+                        <input type = "text" name = "identificador" placeholder = "Ex. 14123" class = "form-control" required>
+                      </div>
+
+                    </div> <!-- /.form-group -->
+
+                    <div class = "form-group">
+
+                      <label class = "col-md-3"> Data da Compra </label>
+
+                      <div class = "col-md-4">
+                        <div class = "input-group date ui-datepicker">
+                          <input id = "date-2" name = "data" class = "form-control parsley-validated parsley-error" type = "text" required>
+                          <span class = "input-group-addon"> <i class = "fa fa-calendar"></i> </span>
+                        </div>
+                      </div>
+
+                    </div> <!-- /.form-group -->
+
+                    <div class = "form-group">
+                      <label class = "col-md-3"> Câmpus de Origem </label>
+
+                      <div class = "col-md-7">
+                          <select name = "origem" id = "s2_basic" class = "form-control">
+                            <optgroup label = "Câmpus - UTFPR">
+                              <option value = "Campo Mourão"> Campo Mourão </option>
+                              <option value = "Apucarana"> Apucarana </option>
+                              <option value = "Cornélio Procópio"> Cornélio Procópio </option>
+                              <option value = "Curitiba"> Curitiba </option>
+                              <option value = "Dois Vizinhos"> Dois Vizinhos </option>
+                              <option value = "Francisco Beltrão"> Francisco Beltrão </option>
+                              <option value = "Guarapuava"> Guarapuava </option>
+                              <option value = "Londrina"> Londrina </option>
+                              <option value = "Medianeira"> Medianeira </option>
+                              <option value = "Pato Branco"> Pato Branco </option>
+                              <option value = "Ponta Grossa"> Ponta Grossa </option>
+                              <option value = "Santa Helena"> Santa Helena </option>
+                              <option value = "Toledo"> Toledo </option>
+                            </optgroup>
+                          </select>
+                      </div>
+                    </div> <!-- /.form-group -->
+
+                    <div class = "form-group">
+                      <label class = "col-md-3"> Localização </label>
+
+                      <div class = "col-md-7">
+                        <select name = "localizacao" id = "s2_basic1" class = "form-control">
+                          <option value = "E100"> E100 </option>
+                          <option value = "A101"> A101 </option>
+                        </select>
+                      </div>
+                    </div> <!-- /.form-group -->
+
+                    <div class = "form-group">
+                      <label class = "col-md-3"> Descrição </label>
+
+                      <div class = "col-md-7">
+                        <textarea id = "about-textarea" name = "descricao" class = "form-control" style = "margin: 0px 0.5px 0px 0px; width: 100%; height: 200px;"> </textarea>
+                      </div>
+                    </div> <!-- /.form-group -->
+
+                    <br>
+
+                    <div class="form-group">
+                      <div class = "col-md-7 col-md-push-3">
+                        <button type = "submit" class = "btn btn-primary"> CADASTRAR </button>
+                        &nbsp;
+                        <button type = "reset" class = "btn btn-default"> LIMPAR </button>
+                      </div>
+                    </div> <!-- /.form-group -->
+
+                  </form>
+                </div>
+
+                <div class = "tab-pane fade" id = "sala-tab">
+                  <h3 class = ""> Cadastro de Salas/Laboratórios </h3>
+                  <hr>
+                  <br />
+
+                  <form method = "POST" action = "" class = "form-horizontal">
+
+                    <div class = "form-group">
+                      <label class = "col-md-3"> Bloco </label>
+
+                      <div class = "col-md-7">
+                        <input type = "text" maxlength = "1"  placeholder = "Ex. A, D, E ..." name = "bloco" class = "form-control" style = "text-transform:uppercase" required/>
+                      </div>
+                    </div> <!-- /.form-group -->
+
+                    <div class = "form-group">
+                      <label class = "col-md-3"> Número </label>
+
+                      <div class = "col-md-7">
+                        <input type = "text" maxlength = "3" placeholder = "Ex. 101" name = "numero" class = "form-control" required/>
+                      </div>
+                    </div> <!-- /.form-group -->
+
+                    <br />
+
+                    <div class = "form-group">
+
+                      <div class = "col-md-7 col-md-push-3">
+                        <button type = "submit" class = "btn btn-primary"> CADASTRAR </button>
+                        &nbsp;
+                        <button type = "reset" class = "btn btn-default"> LIMPAR </button>
+                      </div> <!-- /.col -->
+
+                    </div> <!-- /.form-group -->
+
+                  </form>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+      </div> <!-- /.content-container -->
+      </div> <!-- /.content -->
+    </div> <!-- /.container -->
+
+    <footer class = "footer"></footer>
+  </body>
+</html>

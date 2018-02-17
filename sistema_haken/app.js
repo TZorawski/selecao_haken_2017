@@ -26,12 +26,20 @@ app.get('/pesquisa', function(req, res) {
 
 //GET página cadastro equipamento
 app.get('/cad_equipamento', function(req, res) {
-    res.render('cad_equipamento');
+    res.render('cadastros', {
+      title: 'Equipamentos',
+      scriptButton: '#cad-equipamento',
+      scriptTab: '#equipamento-tab'
+    });
 });
 
 //GET página cadastro sala
 app.get('/cad_sala', function(req, res) {
-    res.render('cad_sala');
+    res.render('cadastros', {
+      title: 'Salas/Laboratórios',
+      scriptButton: '#cad-sala',
+      scriptTab: '#sala-tab'
+    });
 });
 
 //GET página movimentação

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class = "no-js">
+  <head>
+    <title> Histórico | Gerenciamento de Patrimônios </title>
+		<% include partials/head %>
+
+    <script>
+		  $(document).ready(function() {
+		    $('.opcoes').addClass("active");
+		  });
+		</script>
+  </head>
+
+  <body>
+    <% include partials/headerDefault %>
+
+		<div class = "container">
+	    <div class = "content">
+	      <div class = "content-container">
+
+	        <div class = "content-header">
+	          <h2 class = "content-header-title"> HISTÓRICO DE LOCALIZAÇÕES DE EQUIPAMENTOS </h2>
+	          <ol class = "breadcrumb">
+              <li><a href = "/"> Home </a></li>
+              <li><a href = ""> Opções Extras </a></li>
+              <li><a href = ""> Relatórios </a></li>
+              <li class = "active"> Histórico </li>
+            </ol>
+	        </div>
+
+          <div class = "col-md-12">
+            <div id = "selectEquip" class = "form-group">
+              <label style = "font-size: 20px;"> Selecione o Equipamento... </label>
+
+              <select id = "s2_basic" class = "form-control">
+                <optgroup label = "Equipamentos &nbsp;&nbsp; >> &nbsp;&nbsp; ID &nbsp;- &nbsp; Origem &nbsp;- &nbsp; Data Compra &nbsp;- &nbsp; Status &nbsp;- &nbsp; Descrição">
+
+                    <option value = "1111"> 11111 &nbsp;-&nbsp; Campo Mourão &nbsp;-&nbsp; 18/02/2018 &nbsp;-&nbsp; Emprestado &nbsp;-&nbsp; Computador </option>;
+
+                </optgroup>
+              </select>
+            </div> <!-- /.form-group -->
+            <br><br>
+          </div>
+
+          <div class = "portlet portlet-plain">
+
+            <div class = "portlet-header">
+              <h3>
+                <i class = "fa fa-clock-o"></i>
+                Histórico de Movimentos
+              </h3>
+            </div> <!-- /.portlet-header -->
+
+		        <div class = "portlet-content">
+		          <div class = "table-responsive">
+
+                <table class = "table table-striped table-bordered table-hover table-checkable" data-provide = "datatable"
+                  data-display-rows = "10" data-info = "false" data-search = "true" data-length-change = "true" data-paginate = "true">
+
+                  <thead>
+                    <tr>
+                      <th data-filterable = "false" data-sortable = "false"> Equipamento </th>
+                      <th data-filterable = "true" data-sortable = "true"> Data Mov. </th>
+                      <th data-filterable = "true" data-sortable = "true" style = "width: 150px;"> Nova Localização </th>
+                      <th data-filterable = "true" data-sortable = "true"> Usuário </th>
+                      <th data-filterable = "true" data-sortable = "true" style = "width: 100px;"> Tipo </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+											<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "rigth" title = "Mouse"> 11111 </span></td>
+                      <td> 10/01/2017 </td>
+                      <td> Toledo </td>
+											<td> Rafael </td>
+											<td class = "text-center"><span class = "label label-warning"> Empréstimo </span></td>
+										</tr>
+
+                    <tr>
+											<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "rigth" title = "Mouse"> 11111 </span></td>
+                      <td> 10/01/2017 </td>
+                      <td> B002 </td>
+											<td> Willian </td>
+											<td class = "text-center"><span class = "label label-secondary"> Movimentação </span></td>
+										</tr>
+
+                  </tbody>
+
+                </table>
+		          </div>
+		        </div>
+
+  </body>
+</html>

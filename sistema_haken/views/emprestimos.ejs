@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class = "no-js">
+  <head>
+    <title> Empréstimos | Gerenciamento de Patrimônios </title>
+		<% include partials/head %>
+
+    <script>
+		  $(document).ready(function() {
+		    $('.opcoes').addClass("active");
+		  });
+		</script>
+  </head>
+
+  <body>
+    <% include partials/headerDefault %>
+
+    <div class = "container">
+      <div class = "content">
+          <div class = "content-container">
+
+            <div class = "content-header">
+              <h2 class = "content-header-title"> EMPRÉSTIMO DE EQUIPAMENTOS </h2>
+              <ol class = "breadcrumb">
+                <li><a href = "/"> Home </a></li>
+                <li><a href = "javascript:;"> Opções Extras </a></li>
+                <li class = "active"> Empréstimos </li>
+              </ol>
+            </div>
+
+            <div class = "row">
+
+              <div class = "col-md-12">
+                <br><br>
+                <div class = "portlet portlet-plain">
+
+                  <div class = "portlet-header">
+                    <h3>
+                      <i class = "fa fa-table"></i>
+                      Tabela de Equipamentos
+                    </h3>
+                    <ul class = "portlet-tools pull-right">
+                      <li>
+                        <a id = "moverEquip" data-toggle = "modal" href = "#styledModal" class = "btn btn-sm btn-icon">
+                          Realizar Empréstimo&nbsp;&nbsp; <i class = "fa fa-arrow-right"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div> <!-- /.portlet-header -->
+
+                  <div class = "portlet-content">
+                    <div class = "table-responsive">
+
+                      <table id = "tabelaEquip" class = "table table-striped table-bordered table-hover table-checkable" data-provide = "datatable"
+                        data-info = "false" data-search = "false" data-paginate = "true">
+
+                        <thead>
+                          <tr>
+                            <th class = "checkbox-column"></th>
+                            <th data-filterable = "true" data-sortable = "true"> ID </th>
+                            <th data-filterable = "true" data-sortable = "true"> Origem </th>
+                            <th data-filterable = "true" data-sortable = "true" style = "width: 150px;"> Data Compra </th>
+                            <th data-filterable = "true" data-sortable = "true"> Localização Atual </th>
+                            <th data-filterable = "true" data-sortable = "true" style = "width: 90px;"> Status </th>
+                            <th data-filterable = "true" data-sortable = "true"> Descrição </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr>
+                            <td class = 'checkbox-column'><input type = 'checkbox' class = 'icheck-input'/></td>
+      											<td> 11111 </td>
+      											<td> Campo Mourão </td>
+      											<td> 14/02/2018 </td>
+                            <td> A100 </td>
+      											<td class = "text-center"><span class = "label label-success"> Disponível </span></td>
+      											<td> Computador </td>
+      										</tr>
+
+      										<tr>
+                            <td class = 'checkbox-column'><input type = 'checkbox' class = 'icheck-input'/></td>
+      											<td> 22222 </td>
+      											<td> Maringá </td>
+      											<td> 08/01/2018 </td>
+                            <td> Medianeira </td>
+      											<td class = "text-center"><span class = "label label-tertiary"> Emprestado </span></td>
+      											<td> Datashow </td>
+      										</tr>
+                        </tbody>
+
+                      </table>
+
+                    </div> <!-- /.table-responsive -->
+                  </div> <!-- /.portlet-content -->
+
+                </div>
+              </div>
+
+            </div>
+
+          </div> <!-- /.content-container -->
+      </div> <!-- /.content -->
+    </div> <!-- /.container -->
+
+    <footer class = "footer"></footer>
+
+    <div id = "styledModal" class = "modal modal-styled fade">
+      <div class = "modal-dialog">
+        <div class = "modal-content">
+
+          <div class = "modal-header">
+            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true"> &times; </button>
+            <h3 class = "modal-title"> EMPRÉSTIMO DE EQUIPAMENTOS </h3>
+          </div>
+
+          <div class = "modal-body">
+            <p> Selecione o câmpus para qual os equipamentos serão emprestados... </p>
+            <div class = "table-responsive">
+
+              <table id = "resultado" class = "table table-striped table-bordered table-hover table-checkable">
+                <tbody>
+                  <tr>
+                    <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "ID"> 11111 </td>
+                    <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Câmpus de Origem"> Campo Mourão </td>
+                    <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Data de Compra"> 14/02/2018 </td>
+                    <td class = "text-center"><span class = "label label-success ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Status"> Disponível </span></td>
+                    <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Descrição"> Computador </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <hr>
+
+              <div class = "form-group">
+                <label class = "col-md-3"> Novo Câmpus: </label>
+
+                <div class = "col-md-7">
+                  <select name = "campus" id = "s2_basic" class = "form-control">
+                    <optgroup label = "Câmpus - UTFPR">
+                      <option value = "Campo Mourão"> Campo Mourão </option>
+                      <option value = "Apucarana"> Apucarana </option>
+                      <option value = "Cornélio Procópio"> Cornélio Procópio </option>
+                      <option value = "Curitiba"> Curitiba </option>
+                      <option value = "Dois Vizinhos"> Dois Vizinhos </option>
+                      <option value = "Francisco Beltrão"> Francisco Beltrão </option>
+                      <option value = "Guarapuava"> Guarapuava </option>
+                      <option value = "Londrina"> Londrina </option>
+                      <option value = "Medianeira"> Medianeira </option>
+                      <option value = "Pato Branco"> Pato Branco </option>
+                      <option value = "Ponta Grossa"> Ponta Grossa </option>
+                      <option value = "Santa Helena"> Santa Helena </option>
+                      <option value = "Toledo"> Toledo </option>
+                    </optgroup>
+                  </select>
+                </div>
+                <br>
+              </div> <!-- /.form-group -->
+
+            </div> <!-- /.table-responsive -->
+          </div>
+
+          <div class = "modal-footer">
+            <button type = "button" class = "btn btn-tertiary" data-dismiss = "modal"> CANCELAR </button>
+            <button id = "emprestar" type = "button" class = "btn btn-primary"> EMPRESTAR </button>
+          </div>
+
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  </body>
+</html>

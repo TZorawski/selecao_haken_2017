@@ -6,7 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var usuario = require('./routes/usuario');
+var equipamento = require('./routes/equipamento');
+var sala = require('./routes/sala');
+var movimentacao = require('./routes/movimentacao');
 
 var app = express();
 
@@ -15,16 +18,19 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //GET página inicial
-app.get('/', function(req, res) {
-    res.render('index');
-});
+app.use('/', index);
 
 //GET página pesquisa
 app.get('/pesquisa', function(req, res) {
     res.render('pesquisa');
 });
 
-//GET página cadastro equipamento
+//Rota para usuario
+app.use('/usuario', usuario);
+
+//Rota para equipamento
+app.use('/equipamento', equipamento);
+/*
 app.get('/cad_equipamento', function(req, res) {
     res.render('cadastros', {
       title: 'Equipamentos',
@@ -32,20 +38,22 @@ app.get('/cad_equipamento', function(req, res) {
       scriptTab: '#equipamento-tab'
     });
 });
+*/
 
-//GET página cadastro sala
-app.get('/cad_sala', function(req, res) {
+//Rota para sala
+app.use('/sala', sala);
+
+/*app.get('/cad_sala', function(req, res) {
     res.render('cadastros', {
       title: 'Salas/Laboratórios',
       scriptButton: '#cad-sala',
       scriptTab: '#sala-tab'
     });
 });
+*/
 
-//GET página movimentação
-app.get('/movimentacao', function(req, res) {
-    res.render('movimentacao');
-});
+//Rota para movimentação
+app.use('/movimentacao', movimentacao);
 
 //GET página empréstimos
 app.get('/emprestimos', function(req, res) {
@@ -86,7 +94,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

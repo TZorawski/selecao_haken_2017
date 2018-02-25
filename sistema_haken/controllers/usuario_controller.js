@@ -4,7 +4,7 @@ var mysql = require('mysql');
 
 
 module.exports = {
-	inserir(login, nome, senha) {								// Fazer correções 
+	inserir(login, nome, senha) {								// Fazer correções
 		var results = 0;
 		var User = new usuario(login, nome,senha);
 		var sqlQry = 'INSERT INTO usuario VALUES("' + User.getLogin() + '", "' + User.getNome() + '", "' + User.getSenha() + '")';
@@ -21,10 +21,10 @@ module.exports = {
 				console.log('linhas inseridas: ' + rows.affectedRows);
 			}
 		});
-		return results;	
+		return results;
 	},
 	atualizar(login, NovoNome, NovaSenha) {						// Fazer correções 
-		
+
 		var sqlQry = '';
 		if(NovoNome && NovaSenha){			// Atualizar nome e senha
 			sqlQry = 'UPDATE usuario SET nome = "' + NovoNome + '", senha = "' + NovaSenha + '" WHERE login =  "'+ login + '"';
@@ -41,7 +41,7 @@ module.exports = {
 			console.log('nenhum dado foi passado!');
 			return ;
 		}
-		
+
 		if(NovoNome || NovaSenha){
 			connection.query(sqlQry, function(error, rows, fields){
 				if(error) throw error;
@@ -52,7 +52,7 @@ module.exports = {
 			});
 		}
 	},
-	procurar(login) {										// Fazer correções 
+	procurar(login) {										// Fazer correções
 		// Necessario validação do login
 		var sqlQry = 'SELECT login, nome FROM usuario where login = "' + login + '"';
 		var linhas, colunas;
@@ -60,7 +60,7 @@ module.exports = {
 			if(error) throw error;
 			results = rows;
 		});
-		
+
 	},
 	listar() {												// listando no console
 		var sqlQry = 'SELECT login, nome FROM usuario';
@@ -86,5 +86,5 @@ var teste;
 teste = users.inserir(4, 'joinville', 'aniballs')
 teste = users.atualizar(4, 'joinvile', 'anibals');
 users.listar();
-users.procurar(4);	
+users.procurar(4);
 */

@@ -35,12 +35,12 @@ DROP TABLE IF EXISTS `sistema_haken`.`equipamento` ;
 
 CREATE TABLE IF NOT EXISTS `sistema_haken`.`equipamento` (
   `identificador` INT NOT NULL,
-  `aquisicao` DATE NOT NULL,
+  `data_compra` DATE NOT NULL,
   `descricao` TEXT(500) NOT NULL,
   `status` INT NOT NULL,
   `campus_origem` VARCHAR(20) NOT NULL,
   `login` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`identificador`, `login`),
+  PRIMARY KEY (`identificador`),
   INDEX `fk_equipamento_usuario1_idx` (`login` ASC),
   CONSTRAINT `fk_equipamento_usuario1`
     FOREIGN KEY (`login`)
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `sistema_haken`.`sala` (
   `numero` INT(3) NOT NULL,
   `bloco` VARCHAR(1) NOT NULL,
   `login` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`identificador`, `login`),
+  PRIMARY KEY (`identificador`),
   INDEX `fk_sala_usuario1_idx` (`login` ASC),
   CONSTRAINT `fk_sala_usuario1`
     FOREIGN KEY (`login`)
@@ -76,13 +76,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `sistema_haken`.`movimentacao` ;
 
 CREATE TABLE IF NOT EXISTS `sistema_haken`.`movimentacao` (
-  `identificador` INT NOT NULL,
+  `identificador` INT NOT NULL AUTO_INCREMENT,
   `data` DATE NOT NULL,
   `campus` VARCHAR(20) NOT NULL,
   `equipamento` INT NOT NULL,
   `sala` VARCHAR(4) NULL,
   `login` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`identificador`, `login`, `equipamento`, `sala`),
+  PRIMARY KEY (`identificador`),
   INDEX `fk_movimentacao_equipamento1_idx` (`equipamento` ASC),
   INDEX `fk_movimentacao_sala1_idx` (`sala` ASC),
   INDEX `fk_movimentacao_usuario1_idx` (`login` ASC),
@@ -121,3 +121,4 @@ USE `sistema_haken`;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+

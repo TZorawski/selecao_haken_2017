@@ -7,7 +7,7 @@ const { sanitizeBody } = require('express-validator/filter');
 
 // Display Movimentacao create form on GET.
 exports.movimentacao_create_get = function (req, res, next) {
-    res.render('movimentacao_form', { title: 'Create Movimentacao' });
+    res.render('cadastro');
 };
 
 // Handle Movimentacao create on POST.

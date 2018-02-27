@@ -1,99 +1,55 @@
 var express = require('express');
+var http = require('http');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
-var index = require('./routes/index');
 var usuario = require('./routes/usuario');
-var equipamento = require('./routes/equipamento');
-var sala = require('./routes/sala');
+var index = require('./routes/index');
+var pesquisa = require('./routes/pesquisa');
+var cadastros = require('./routes/cadastros');
 var movimentacao = require('./routes/movimentacao');
+var emprestimo = require('./routes/emprestimo');
+var relatorio = require('./routes/relatorio');
+var historico = require('./routes/historico');
 
 var app = express();
+
+var connection = require('./database-connection');
+global.db = connection;
+
+app.use(logger('dev'));
+app.use(cookieParser());
+
+app.set('port', process.env.PORT || 8080);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+              secret: 'macho_alfa',
+              resave: false,
+              saveUninitialized: true,
+              cookie: { maxAge: 60000 }
+            }))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('port', process.env.PORT || 8080);
 
-//GET página inicial
-app.use('/', index);
-
-//GET página pesquisa
-app.get('/pesquisa', function(req, res) {
-    res.render('pesquisa');
-});
-
-//Rota para usuario
 app.use('/usuario', usuario);
-
-//Rota para equipamento
-app.use('/equipamento', equipamento);
-/*
-app.get('/cad_equipamento', function(req, res) {
-    res.render('cadastros', {
-      title: 'Equipamentos',
-      scriptButton: '#cad-equipamento',
-      scriptTab: '#equipamento-tab'
-    });
-});
-*/
-
-//Rota para sala
-app.use('/sala', sala);
-
-/*app.get('/cad_sala', function(req, res) {
-    res.render('cadastros', {
-      title: 'Salas/Laboratórios',
-      scriptButton: '#cad-sala',
-      scriptTab: '#sala-tab'
-    });
-});
-*/
-
-//Rota para movimentação
-app.use('/movimentacao', movimentacao);
-
-//GET página empréstimos
-app.get('/emprestimos', function(req, res) {
-    res.render('emprestimos');
-});
-
-//GET página relatório
-app.get('/relatorio', function(req, res) {
-    res.render('relatorio');
-});
-
-//GET página histórico
-app.get('/historico', function(req, res) {
-    res.render('historico');
-});
-
-//GET página cadastro
-app.get('/cadastro', function(req, res) {
-    res.render('cadastro');
-});
-
-//GET página login
-app.get('/login', function(req, res) {
-    res.render('login');
-});
-
-//GET página esqueceu senha
-app.get('/esqueceu_senha', function(req, res) {
-    res.render('esqueceu_senha');
-});
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', index);
+app.use('/pesquisa', pesquisa);
+app.use('/cadastro', cadastros);
+app.use('/movimentacao', movimentacao);
+app.use('/emprestimos', emprestimo);
+app.use('/relatorio', relatorio);
+app.use('/historico', historico);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -114,3 +70,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+app.listen(8080)

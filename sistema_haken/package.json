@@ -13,6 +13,8 @@
     "express": "~4.15.5",
     "morgan": "~1.9.0",
     "mysql": "^2.15.0",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "express-session": "^1.15.1",
+    "req-flash": "0.0.3"
   }
 }

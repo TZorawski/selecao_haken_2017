@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* Abre pagina principal. */
+// Abre pagina principal.
 router.get('/', function(req, res, next) {
   res.render('index');
 });

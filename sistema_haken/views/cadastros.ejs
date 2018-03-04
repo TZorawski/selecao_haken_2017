@@ -59,13 +59,16 @@
                   <hr/>
                   <br/>
 
-                  <form method = "POST" action = "" class = "form-horizontal">
+									<% if (message.length > 0) { %>
+					          <div class = "alert alert-<%= message_status %> col-sm-12"> <%= message %> </div>
+					        <% } %>
+                  <form method = "POST" action = "/cadastro/cadastrarEquipamento" class = "form-horizontal">
 
                     <div class = "form-group">
 
                       <label class = "col-md-3"> Identificador </label>
                       <div class = "col-md-3">
-                        <input type = "text" name = "identificador" placeholder = "Ex. 14123" class = "form-control" required>
+                        <input type = "number" name = "identificador" placeholder = "Ex. 14123" class = "form-control" required>
                       </div>
 
                     </div> <!-- /.form-group -->
@@ -112,8 +115,9 @@
 
                       <div class = "col-md-7">
                         <select name = "localizacao" id = "s2_basic1" class = "form-control">
-                          <option value = "E100"> E100 </option>
-                          <option value = "A101"> A101 </option>
+													<% dataSalas.forEach(function(sala) { %>
+                          	<option value = "<%= sala.identificador %>"> <%= sala.identificador %> </option>
+													<% } %>
                         </select>
                       </div>
                     </div> <!-- /.form-group -->
@@ -144,7 +148,7 @@
                   <hr>
                   <br />
 
-                  <form method = "POST" action = "" class = "form-horizontal">
+                  <form method = "POST" action = "/cadastro/cadastrarSala" class = "form-horizontal">
 
                     <div class = "form-group">
                       <label class = "col-md-3"> Bloco </label>

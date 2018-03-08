@@ -66,25 +66,19 @@
                         </thead>
 
                         <tbody>
-                          <tr>
-                            <td class = 'checkbox-column'><input type = 'checkbox' class = 'icheck-input'/></td>
-      											<td> 11111 </td>
-      											<td> Campo Mourão </td>
-      											<td> 14/02/2018 </td>
-                            <td> A100 </td>
-      											<td class = "text-center"><span class = "label label-success"> Disponível </span></td>
-      											<td> Computador </td>
-      										</tr>
-
-      										<tr>
-                            <td class = 'checkbox-column'><input type = 'checkbox' class = 'icheck-input'/></td>
-      											<td> 22222 </td>
-      											<td> Maringá </td>
-      											<td> 08/01/2018 </td>
-                            <td> Medianeira </td>
-      											<td class = "text-center"><span class = "label label-tertiary"> Emprestado </span></td>
-      											<td> Datashow </td>
-      										</tr>
+                          <% dataEquipamento.forEach(function(equipamento) { %>
+                            <% if (equipamento.status == 0) { %>
+                              <tr>
+                                <td class = 'checkbox-column'><input type = 'checkbox' class = 'icheck-input'/></td>
+                                <td> <%= equipamento.identificador %> </td>
+                                <td> <%= equipamento.campus_origem %> </td>
+                                <td> <%= equipamento.data_compra %> </td>
+                                <td> A100 </td>
+                                <td class = "text-center"><span class = "label label-success"> Disponível </span></td>
+                                <td> <%= equipamento.descricao %> </td>
+                              </tr>
+                            <% } %>
+                          <% }); %>
                         </tbody>
 
                       </table>

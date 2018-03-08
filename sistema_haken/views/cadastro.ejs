@@ -17,7 +17,11 @@
         <h3 class = "account-body-title"> Inicie com uma Conta Grátis. </h3>
         <h5 class = "account-body-subtitle"> Cadastre-se em menos de 30 segundos. Sem uso do cartão de crédito ;) </h5>
 
-        <form class = "form account-form" method = "POST" action = "">
+        <% if (message.length > 0) { %>
+          <div class = "alert alert-danger col-sm-12"> <%= message %> </div>
+        <% } %>
+
+        <form class = "form account-form" method = "POST" action = "/usuario/cadastrarUsuario">
 
           <div class = "form-group">
             <input type = "text" class = "form-control" name = "nome" placeholder = "Nome Completo" tabindex = "1" required>

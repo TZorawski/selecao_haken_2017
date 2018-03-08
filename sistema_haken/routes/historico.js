@@ -3,7 +3,9 @@ var router = express.Router();
 
 // Abre página de histórico.
 router.get('/', function(req, res, next) {
-  res.render('historico');
+  res.render('historico', {
+    usuario: 'Vitor'
+  });
 });
 
 module.exports = router;

@@ -6,8 +6,12 @@ var controller_equipamento = require('../controllers/controller_equipamento');
 
 // Abre página de empréstimos.
 router.get('/', function(req, res, next) {
-    var equipamentos = controller_equipamento.listar();
-    res.render('emprestimos');
+  controller_equipamento.listar(function(err, resultsEquip) {
+    res.render('emprestimos', {
+      usuario: 'Vitor',
+      dataEquipamento: resultsEquip
+    });
+  });
 });
 
 module.exports = router;

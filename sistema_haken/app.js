@@ -66,7 +66,7 @@ app.use(function(err, req, res, next) {
 
   // renderiza a página erro
   res.status(err.status || 500);
-  res.render('page-500');
+  res.render('page-500', {usuario: 'Vitor'});
 });
 
 module.exports = app;

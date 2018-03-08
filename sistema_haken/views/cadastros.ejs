@@ -57,11 +57,13 @@
                 <div class = "tab-pane fade" id = "equipamento-tab">
                   <h3> Cadastro de Novos Equipamentos </h3>
                   <hr/>
-                  <br/>
 
 									<% if (message.length > 0) { %>
-					          <div class = "alert alert-<%= message_status %> col-sm-12"> <%= message %> </div>
-					        <% } %>
+										<div class = "alert alert-<%= message_status %> col-sm-12"> <%= message %> </div>
+									<% } %>
+
+                  <br/>
+
                   <form method = "POST" action = "/cadastro/cadastrarEquipamento" class = "form-horizontal">
 
                     <div class = "form-group">
@@ -115,9 +117,9 @@
 
                       <div class = "col-md-7">
                         <select name = "localizacao" id = "s2_basic1" class = "form-control">
-													<% dataSalas.forEach(function(sala) { %>
+													<% dataSala.forEach(function(sala) { %>
                           	<option value = "<%= sala.identificador %>"> <%= sala.identificador %> </option>
-													<% } %>
+													<% }); %>
                         </select>
                       </div>
                     </div> <!-- /.form-group -->
@@ -144,9 +146,14 @@
                 </div>
 
                 <div class = "tab-pane fade" id = "sala-tab">
-                  <h3 class = ""> Cadastro de Salas/Laboratórios </h3>
-                  <hr>
-                  <br />
+                  <h3> Cadastro de Salas/Laboratórios </h3>
+                  <hr/>
+
+									<% if (message.length > 0) { %>
+										<div class = "alert alert-<%= message_status %> col-sm-12"> <%= message %> </div>
+									<% } %>
+
+                  <br/>
 
                   <form method = "POST" action = "/cadastro/cadastrarSala" class = "form-horizontal">
 
@@ -154,7 +161,7 @@
                       <label class = "col-md-3"> Bloco </label>
 
                       <div class = "col-md-7">
-                        <input type = "text" maxlength = "1"  placeholder = "Ex. A, D, E ..." name = "bloco" class = "form-control" style = "text-transform:uppercase" required/>
+                        <input type = "text" maxlength = "1"  placeholder = "Ex. A, D, E ..." name = "bloco" class = "form-control" style = "text-transform: uppercase" required/>
                       </div>
                     </div> <!-- /.form-group -->
 

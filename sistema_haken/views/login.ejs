@@ -18,7 +18,11 @@
         <h3 class = "account-body-title"> Bem-Vindo ao Sistema </h3>
         <h5 class = "account-body-subtitle"> Por favor, faça o login para acessar as páginas de cadastro, edição, remoção e movimentação... </h5>
 
-        <form class = "form account-form" method = "POST" action = "">
+        <% if (message.length > 0) { %>
+          <div class = "alert alert-danger col-sm-12"> <%= message %> </div>
+        <% } %>
+
+        <form class = "form account-form" method = "POST" action = "/usuario/logarUsuario">
 
           <div class = "form-group">
             <label for = "login-username" class = "placeholder-hidden"> Usuário </label>
@@ -42,7 +46,7 @@
       <div class = "account-footer">
         <p>
         Não possui uma conta? &nbsp;
-        <a href = "/usuario/cadastro" class = ""> Inscreva-se agora » </a>
+        <a href = "/usuario/cadastro"> Inscreva-se agora » </a>
         </p>
       </div> <!-- /.account-footer -->
 

@@ -8,6 +8,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   controller_equipamento.listar(function(err, resultsEquip) {
     controller_sala.listar(function(err, resultsSala) {
+console.log('alo', resultsSala);
       res.render('pesquisa', {
         usuario: 'Vitor',
         scriptEdit: '',

@@ -2,7 +2,7 @@ var controller_equipamento = require('./controller_equipamento');
 var controller_sala = require('./controller_sala');
 
 exports.listar = function(callback) {
-	var sql = "SELECT * FROM Sala";
+	var sql = "SELECT * FROM sala";
 
 	db.query(sql, callback);
 }
@@ -39,7 +39,7 @@ exports.criar_post = function(req, res, next) {
 exports.remover_get = function(req, res, next) {
   var id  = req.params.id;
 
-  var sql = "DELETE FROM Sala WHERE identificador = '" + id + "'";
+  var sql = "DELETE FROM sala WHERE identificador = '" + id + "'";
   var messtatus = 'danger';
   var mes;
 
@@ -70,7 +70,7 @@ exports.remover_get = function(req, res, next) {
 exports.edicao_get = function(req, res, next) {
   var id  = req.params.id;
 
-	var sql = 'SELECT * FROM Sala WHERE identificador = "' + id + '"';
+	var sql = 'SELECT * FROM sala WHERE identificador = "' + id + '"';
 	db.query(sql, function(err, results) {
 
 		controller_equipamento.listar(function(err, resultsEquip) {
@@ -95,7 +95,7 @@ exports.edicao_get = function(req, res, next) {
 exports.editar_post = function (req, res, next) {
 	var post = req.body;
 
-	var sql = "UPDATE Sala SET identificador = '" + post.bloco + post.numero + "', bloco = '" + post.bloco + "', numero = '" + post.numero + "' WHERE identificador = '" + post.identificador + "'";
+	var sql = "UPDATE sala SET identificador = '" + post.bloco + post.numero + "', bloco = '" + post.bloco + "', numero = '" + post.numero + "' WHERE identificador = '" + post.identificador + "'";
 	var messtatus = 'danger';
 	var mes;
 

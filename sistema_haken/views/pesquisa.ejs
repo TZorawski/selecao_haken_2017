@@ -69,10 +69,10 @@
                         <td> <%= equipamento.campus_origem %> </td>
                         <td> <%= equipamento.data_compra %> </td>
                         <% if (equipamento.status == 0) { %>
-                          <td> A100 </td>
+                          <td> <%= equipamento.loc_sala %> </td>
                           <td class = "text-center"><span class = "label label-success"> Disponível </span></td>
                         <% } else { %>
-                          <td> Maringá </td>
+                          <td> <%= equipamento.loc_campus %> </td>
                           <td class = "text-center"><span class = "label label-tertiary"> Emprestado </span></td>
                         <% } %>
                         <td> <%= equipamento.descricao %> </td>

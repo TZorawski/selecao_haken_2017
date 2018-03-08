@@ -7,11 +7,15 @@
     <script>
 		  $(document).ready(function() {
 		    $('.opcoes').addClass("active");
+        <% if (scriptRelatorio.length > 0) { %>
+          $('<%= scriptRelatorio %>').click();
+        <% } %>
 		  });
     </script>
   </head>
 
   <body>
+    <a href = "#basicModal" style = "display: none" id = "relatorioGeral" data-toggle = "modal"></a> <!-- Link para Editar Equipamento -->
     <% include partials/headerDefault %>
 
     <div class = "container">
@@ -57,53 +61,28 @@
       					</div> <!-- /.portlet-header -->
 
       					<div class = "portlet-content">
-    							<div class = "sala col-sm-5 col-md-3">
-    							  <div class = "row-stat">
+                  <% dataSala.forEach(function(sala) { %>
+                    <% var cont = 0; %>
+      							<div class = "sala col-sm-5 col-md-3">
+      							  <div class = "row-stat">
 
-      								<a name = "a100" data-toggle = "modal" href = "#basicModal1" class = "ola ui-tooltip" data-placement = "top" title = "Veja os equipamentos desta sala">
-      									   <li class = "fa fa-eye"></li>
-      								</a>
+        								<a href = "/relatorio/relatar/<%= sala.identificador %>" data-toggle = "modal" href = "#basicModal" class = "ola ui-tooltip" data-placement = "top" title = "Veja os equipamentos desta sala">
+                          <li class = "fa fa-eye"></li>
+        								</a>
 
-      								<h3 class = "row-stat-value"> &nbsp; SALA - A100 &nbsp; </h3>
+        								<h3 class = "row-stat-value"> &nbsp; SALA - <%= sala.identificador %> &nbsp; </h3>
 
-      								<a class = "oi nav-icon ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Total de Equipamentos">
-      								  <span class = " totalEquip label label-success row-stat-badge"> 0 </span>
-      								</a>
+                        <% dataEquip.forEach(function(equip) { %>
+                          <% if(equip.loc_sala == sala.identificador) cont++; %>
+                        <% }); %>
 
-    							  </div> <!-- /.row-stat -->
-    							</div> <!-- /.col -->
+        								<a class = "oi nav-icon ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Total de Equipamentos">
+        								  <span class = "totalEquip label label-success row-stat-badge"> <%= cont %> </span>
+        								</a>
 
-    							<div class = "sala col-sm-5 col-md-3">
-    							  <div class = "row-stat">
-
-      								<a name = "G105" data-toggle = "modal" href = "#basicModal2" class = "ola ui-tooltip" data-placement = "top" title = "Veja os equipamentos desta sala">
-      								  <li class = "fa fa-eye"></li>
-      								</a>
-
-      								<h3 class = "row-stat-value"> &nbsp; SALA - G105 &nbsp; </h3>
-
-      								<a class = "oi nav-icon ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Total de Equipamentos">
-      								  <span class = " totalEquip label label-success row-stat-badge"> 0 </span>
-      								</a>
-
-    							  </div> <!-- /.row-stat -->
-    							</div> <!-- /.col -->
-
-    							<div class = "sala col-sm-5 col-md-3">
-    							  <div class = "row-stat">
-
-      								<a name = "E007" data-toggle = "modal" href = "#basicModal3" class = "ola ui-tooltip" data-placement = "top" title = "Veja os equipamentos desta sala">
-      									   <li class = "fa fa-eye"></li>
-      								</a>
-
-      								<h3 class = "row-stat-value"> &nbsp; SALA - E007 &nbsp; </h3>
-
-      								<a class = "oi nav-icon ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Total de Equipamentos">
-      								  <span class = " totalEquip label label-success row-stat-badge"> 2 </span>
-      								</a>
-
-    							  </div> <!-- /.row-stat -->
-    							</div> <!-- /.col -->
+      							  </div> <!-- /.row-stat -->
+      							</div> <!-- /.col -->
+                  <% }); %>
       					</div>
 
     				  </div>
@@ -139,77 +118,46 @@
   		</div><!-- /.modal-dialog -->
 	  </div><!-- /.modal -->
 
-	  <div id = "basicModal2" class = "modal fade">
+    <div id = "basicModal" class = "modal fade">
   		<div class = "modal-dialog">
   		  <div class = "modal-content">
 
-  			<div class = "modal-header">
-  			  <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true"> &times; </button>
-  			  <h3 class = "modal-title"> INFORMAÇÕES SOBRE SALA </h3>
-  			</div>
+    			<div class = "modal-header">
+    			  <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true"> &times; </button>
+    			  <h3 class = "modal-title"> INFORMAÇÕES SOBRE SALA </h3>
+    			</div>
 
-  			<div class = "modal-body">
-  			  <p> A sala G105 não possui nenhum equipamento... </p>
-  			  <div id = "resultado" class = "table-responsive">
-  			  </div> <!-- /.table-responsive -->
-  			</div>
+    			<div class = "modal-body">
+            <% if(dataEquipamento.length > 0) { %>
+              <p> A seguir estão todos os equipamentos presentes nesta sala ... </p>
+      			  <div class = "table-responsive">
 
-  			<div class = "modal-footer">
-  			  <button type = "button" class = "btn btn-primary" data-dismiss = "modal"> FECHAR </button>
-  			</div>
+      				  <table id = "resultado" class = "table table-striped table-bordered table-hover table-checkable">
+        					<tbody>
+                    <% dataEquipamento.forEach(function(equipamento) { %>
+          					  <tr>
+            						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "ID"> <%= equipamento.identificador %> </span></td>
+            						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Câmpus de Origem"> <%= equipamento.campus_origem %> </span></td>
+            						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Data de Compra"> <%= equipamento.data_compra %> </span></td>
+            						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Descrição"> <%= equipamento.descricao %> </span></td>
+                      </tr>
+                    <% }); %>
+        					</tbody>
+      				  </table>
 
-  		  </div><!-- /.modal-content -->
-  		</div><!-- /.modal-dialog -->
-	  </div><!-- /.modal -->
+      				  <hr>
+      					<span class = "label label-secondary" style = "font-family: 24px;"> TOTAL DE EQUIPAMENTOS: <%= dataEquipamento.length %> </span>
+      					<p></p>
 
-	  <div id = "basicModal3" class = "modal fade">
-  		<div class = "modal-dialog">
-  		  <div class = "modal-content">
+      			  </div> <!-- /.table-responsive -->
+            <% } else { %>
+              <p> Esta sala possui nenhum equipamento... </p>
+            <% } %>
+    			</div>
 
-  			<div class = "modal-header">
-  			  <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true"> &times; </button>
-  			  <h3 class = "modal-title"> INFORMAÇÕES SOBRE SALA </h3>
-  			</div>
-
-  			<div class = "modal-body">
-  			  <p> A seguir estão todos os equipamentos presentes na sala E007... </p>
-  			  <div id = "resultado" class = "table-responsive">
-
-  				  <table id = "resultado" class = "table table-striped table-bordered table-hover table-checkable">
-  					<tbody>
-  					  <tr>
-  						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "ID"> 11111 </span></td>
-  						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Câmpus de Origem"> Campo Mourão </span></td>
-  						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Data de Compra"> 14/02/2018 </span></td>
-  						<td><span class = "text-center"><span class = "label label-success ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Status"> Disponível </span></span></td>
-  						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Descrição"> Computador </span></td>
-  					  </tr>
-  					  <tr>
-  						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "ID"> 55555 </span></td>
-  						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Câmpus de Origem"> Curitiba </span></td>
-  						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Data de Compra"> 05/02/2018 </span></td>
-  						<td><span class = "text-center"><span class = "label label-tertiary" data-toggle = "tooltip" data-placement = "top" title = "Status"> Emprestado </span></span></td>
-  						<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Descrição"> Computador </span></td>
-  					  </tr>
-  					</tbody>
-  				  </table>
-
-  				  <hr>
-  					<span class = "label label-secondary" style = "font-family: 24px;"> TOTAL DE EQUIPAMENTOS - 2 </span>
-  					<p></p>
-
-  					<span class = "label label-success" style = "font-family: 24px;"> EQUIPAMENTOS DISPONÍVEIS - 1 </span>
-  					<p></p>
-
-  					<span class = "label label-tertiary" style = "font-family: 24px;"> EQUIPAMENTOS EMPRESTADOS - 1 </span>
-  					<p></p>
-
-  			  </div> <!-- /.table-responsive -->
-  			</div>
-
-  			<div class = "modal-footer">
-  			  <button type = "button" class = "btn btn-primary" data-dismiss = "modal"> FECHAR </button>
-  			</div>
+    			<div class = "modal-footer">
+    			  <button type = "button" class = "btn btn-primary" data-dismiss = "modal"> FECHAR </button>
+    			</div>
 
   		  </div><!-- /.modal-content -->
   		</div><!-- /.modal-dialog -->

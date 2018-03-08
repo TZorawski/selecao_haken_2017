@@ -39,14 +39,16 @@ router.get('/sala', function(req, res, next) {
     return;
   } */
 
-  res.render('cadastros', {
-    title: 'Salas/Laboratórios',
-    usuario: 'Vitor', //req.session.nome
-    scriptButton: '#cad-sala',
-    scriptTab: '#sala-tab',
-    dataSala: resultsSala,
-    message_status: '',
-    message: ''
+  controller_sala.listar(function(err, resultsSala) {
+    res.render('cadastros', {
+      title: 'Salas/Laboratórios',
+      usuario: 'Vitor', //req.session.nome
+      scriptButton: '#cad-sala',
+      scriptTab: '#sala-tab',
+      dataSala: resultsSala,
+      message_status: '',
+      message: ''
+    });
   });
 });
 

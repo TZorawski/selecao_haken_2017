@@ -142,3 +142,17 @@ exports.editar_post = function (req, res, next) {
     });
 	});
 };
+
+exports.pesquisar_post = function (req, res, next) {
+	var valor = req.body['pesquisa-texto'].toUpperCase();
+
+	var sql = "SELECT * FROM sala WHERE identificador LIKE '%" + valor + "%' OR bloco LIKE '%" + valor + "%' OR numero LIKE '%" + valor + "%'";
+
+	db.query(sql, function(err, results) {
+		res.render('relatorio', {
+      usuario: 'Vitor',//req.session.nome
+      pesquisaTexto: valor,
+      dataSala: results
+    });
+	});
+};

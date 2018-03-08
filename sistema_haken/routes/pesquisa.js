@@ -1,8 +1,9 @@
-var controller_equipamento = require('../controllers/controller_equipamento');
-var controller_sala = require('../controllers/controller_sala');
-
 var express = require('express');
 var router = express.Router();
+
+//Obtem controllers
+var controller_equipamento = require('../controllers/controller_equipamento');
+var controller_sala = require('../controllers/controller_sala');
 
 // Abre página de pesquisa.
 router.get('/', function(req, res, next) {

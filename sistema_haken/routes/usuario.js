@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+//Obtem controllers
 controller_usuario = require('../controllers/controller_usuario');
 
 // Abre pagina cadastro de usuários.

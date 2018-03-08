@@ -7,6 +7,28 @@ exports.listar = function (callback) {
   db.query(sql, callback);
 };
 
+exports.listarPorSalas = function(req, res, next) {
+  var sala  = req.params.sala;
+
+  var sql = "SELECT *, DATE_FORMAT(data_compra,'%d/%m/%Y') AS data_compra FROM equipamento WHERE loc_sala = '" + sala +"'";
+
+  controller_sala.listar(function(err, resultsSala) {
+    controller_equipamento.listar(function(err, resultsEquip) {
+      db.query(sql, function(err, results) {
+        console.log("oi", results.length);
+        res.render('relatorio', {
+          usuario: 'Vitor', //req.session.nome
+          pesquisaTexto: '',
+          scriptRelatorio: '#relatorioGeral',
+          dataSala: resultsSala,
+          dataEquip: resultsEquip,
+          dataEquipamento: results
+        });
+      });
+    });
+  });
+}
+
 exports.criar_post = function(req, res, next) {
   /* if(req.session.usuario == null) {
     res.redirect("/usuario/login");
@@ -15,7 +37,7 @@ exports.criar_post = function(req, res, next) {
 
   var post  = req.body;
 
-  var sql = "INSERT INTO equipamento SET data_compra = STR_TO_DATE('" + post.data + "', '%d/%m/%Y'), identificador = '" + post.identificador + "', descricao = '" + post.descricao + "', status = 0, campus_origem = '" + post.origem + "', login = '1921924'"; //req.session.login
+  var sql = "INSERT INTO equipamento SET data_compra = STR_TO_DATE('" + post.data + "', '%d/%m/%Y'), identificador = '" + post.identificador + "', descricao = '" + post.descricao + "', status = 0, campus_origem = '" + post.origem + "', loc_sala = '" + post.localizacao + "', loc_campus = 'Campo Mourão', login = '1921924'"; //req.session.login
   var sqlM = "INSERT INTO movimentacao SET identificador = null, data = NOW(), campus = 'Campo Mourão', equipamento = '" + post.identificador + "', sala = '" + post.localizacao + "', login = '1921924'"; //req.session.login
   var messtatus = 'danger';
   var mes;

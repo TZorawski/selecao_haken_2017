@@ -8,10 +8,15 @@ exports.listar = function (callback) {
 };
 
 exports.criar_post = function(req, res, next) {
+  /* if(req.session.usuario == null) {
+    res.redirect("/usuario/login");
+    return;
+  } */
+
   var post  = req.body;
 
-  var sql = "INSERT INTO equipamento SET data_compra = STR_TO_DATE('" + post.data + "', '%d/%m/%Y'), identificador = '" + post.identificador + "', descricao = '" + post.descricao + "', status = 0, campus_origem = '" + post.origem + "', login = '1921924'";
-  var sqlM = "INSERT INTO movimentacao SET identificador = null, data = NOW(), campus = 'Campo Mourão', equipamento = '" + post.identificador + "', sala = '" + post.localizacao + "', login = '1921924'";
+  var sql = "INSERT INTO equipamento SET data_compra = STR_TO_DATE('" + post.data + "', '%d/%m/%Y'), identificador = '" + post.identificador + "', descricao = '" + post.descricao + "', status = 0, campus_origem = '" + post.origem + "', login = '1921924'"; //req.session.login
+  var sqlM = "INSERT INTO movimentacao SET identificador = null, data = NOW(), campus = 'Campo Mourão', equipamento = '" + post.identificador + "', sala = '" + post.localizacao + "', login = '1921924'"; //req.session.login
   var messtatus = 'danger';
   var mes;
 
@@ -26,7 +31,7 @@ exports.criar_post = function(req, res, next) {
 
     controller_sala.listar(function(err, resultsSala) {
       res.render('cadastros', {
-        usuario: 'Vitor',
+        usuario: 'Vitor', //req.session.nome
         title: 'Equipamentos',
         scriptButton: '#cad-equipamento',
         scriptTab: '#equipamento-tab',
@@ -36,9 +41,14 @@ exports.criar_post = function(req, res, next) {
       });
     });
   });
-}
+};
 
 exports.remover_get = function(req, res, next) {
+  /* if(req.session.usuario == null) {
+    res.redirect("/usuario/login");
+    return;
+  } */
+
   var id  = req.params.id;
 
   var sql = "DELETE FROM equipamento WHERE identificador = '" + id + "'";
@@ -55,7 +65,7 @@ exports.remover_get = function(req, res, next) {
     controller_equipamento.listar(function(err, resultsEquip) {
       controller_sala.listar(function(err, resultsSala) {
         res.render('pesquisa', {
-          usuario: 'Vitor',
+          usuario: 'Vitor', //req.session.nome
           scriptEdit: '',
           dataEquipamento: resultsEquip,
           dataSala: resultsSala,
@@ -67,9 +77,14 @@ exports.remover_get = function(req, res, next) {
       });
     });
   });
-}
+};
 
 exports.edicao_get = function(req, res, next) {
+  /* if(req.session.usuario == null) {
+    res.redirect("/usuario/login");
+    return;
+  } */
+
   var id  = req.params.id;
 
   var sql = "SELECT *, DATE_FORMAT(data_compra,'%d/%m/%Y') AS data_compra FROM equipamento where identificador =  " + id;
@@ -78,7 +93,7 @@ exports.edicao_get = function(req, res, next) {
     controller_sala.listar(function(err, resultsSala) {
       db.query(sql, function(err, results) {
         res.render('pesquisa', {
-          usuario: 'Vitor',
+          usuario: 'Vitor', //req.session.nome
           scriptEdit: '#editEquipamento',
           dataEquipamento: resultsEquip,
           dataSala: resultsSala,
@@ -90,9 +105,14 @@ exports.edicao_get = function(req, res, next) {
       });
     });
   });
-}
+};
 
 exports.editar_post = function(req, res, next) {
+  /* if(req.session.usuario == null) {
+    res.redirect("/usuario/login");
+    return;
+  } */
+
   var post = req.body;
   console.log("alo", req.body);
 
@@ -101,8 +121,6 @@ exports.editar_post = function(req, res, next) {
   var mes;
 
   db.query(sql, function(err, results) {
-    console.log("oi", results);
-    console.log("ola", results.affectedRows);
     if(results.affectedRows > 0) {
       messtatus = 'success';
       mes = 'Registro editado com Sucesso.';
@@ -112,7 +130,7 @@ exports.editar_post = function(req, res, next) {
     controller_equipamento.listar(function(err, resultsEquip) {
       controller_sala.listar(function(err, resultsSala) {
         res.render('pesquisa', {
-          usuario: 'Vitor',
+          usuario: 'Vitor', //req.session.nome
           scriptEdit: '',
           dataEquipamento: resultsEquip,
           dataSala: resultsSala,
@@ -124,4 +142,4 @@ exports.editar_post = function(req, res, next) {
       });
     });
   });
-}
+};

@@ -6,11 +6,15 @@ var router = express.Router();
 
 // Abre página de pesquisa.
 router.get('/', function(req, res, next) {
+  /* if(req.session.usuario == null) {
+    res.redirect("/usuario/login");
+    return;
+  } */
+
   controller_equipamento.listar(function(err, resultsEquip) {
     controller_sala.listar(function(err, resultsSala) {
-console.log('alo', resultsSala);
       res.render('pesquisa', {
-        usuario: 'Vitor',
+        usuario: 'Vitor',  //req.session.nome
         scriptEdit: '',
         dataEquipamento: resultsEquip,
         dataSala: resultsSala,

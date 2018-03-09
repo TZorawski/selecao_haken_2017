@@ -15,7 +15,6 @@ exports.listarPorSalas = function(req, res, next) {
   controller_sala.listar(function(err, resultsSala) {
     controller_equipamento.listar(function(err, resultsEquip) {
       db.query(sql, function(err, results) {
-        console.log("oi", results.length);
         res.render('relatorio', {
           usuario: 'Vitor', //req.session.nome
           pesquisaTexto: '',
@@ -27,7 +26,7 @@ exports.listarPorSalas = function(req, res, next) {
       });
     });
   });
-}
+};
 
 exports.criar_post = function(req, res, next) {
   /* if(req.session.usuario == null) {

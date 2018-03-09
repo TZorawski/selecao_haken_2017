@@ -148,11 +148,18 @@ exports.pesquisar_post = function (req, res, next) {
 
 	var sql = "SELECT * FROM sala WHERE identificador LIKE '%" + valor + "%' OR bloco LIKE '%" + valor + "%' OR numero LIKE '%" + valor + "%'";
 
-	db.query(sql, function(err, results) {
-		res.render('relatorio', {
-      usuario: 'Vitor',//req.session.nome
-      pesquisaTexto: valor,
-      dataSala: results
+	controller_sala.listar(function(err, resultsSala) {
+    controller_equipamento.listar(function(err, resultsEquip) {
+      db.query(sql, function(err, results) {
+        res.render('relatorio', {
+          usuario: 'Vitor', //req.session.nome
+          pesquisaTexto: valor,
+          scriptRelatorio: '',
+          dataSala: results,
+          dataEquip: resultsEquip,
+          dataEquipamento: ''
+        });
+      });
     });
 	});
 };

@@ -7,11 +7,27 @@
     <script>
 		  $(document).ready(function() {
 		    $('.opcoes').addClass("active");
+
+        $('#empresEquip').click(function() {
+          var ids = [], cont = 0;
+          $(".icheck-input").each( function() {
+            if($(this).hasClass("checked")) {
+              ids[cont] = $(this).find('input').attr('name');
+              cont++;
+            }
+          });
+          $(location).attr('href', '/emprestimos/' + ids);
+        });
+
+        <% if (scriptEmp.length > 0) { %>
+          $('<%= scriptEmp %>').click();
+        <% } %>
 		  });
 		</script>
   </head>
 
   <body>
+    <a href = "#styledModal" style = "display: none" id = "emp" data-toggle = "modal"></a> <!-- Link para Emprestar Equipamentos -->
     <% include partials/headerDefault %>
 
     <div class = "container">
@@ -40,7 +56,7 @@
                     </h3>
                     <ul class = "portlet-tools pull-right">
                       <li>
-                        <a id = "moverEquip" data-toggle = "modal" href = "#styledModal" class = "btn btn-sm btn-icon">
+                        <a id = "empresEquip" data-toggle = "modal" href = "" class = "btn btn-sm btn-icon">
                           Realizar Empréstimo&nbsp;&nbsp; <i class = "fa fa-arrow-right"></i>
                         </a>
                       </li>
@@ -69,11 +85,11 @@
                           <% dataEquipamento.forEach(function(equipamento) { %>
                             <% if (equipamento.status == 0) { %>
                               <tr>
-                                <td class = 'checkbox-column'><input type = 'checkbox' class = 'icheck-input'/></td>
+                                <td class = 'checkbox-column'><input name = "<%= equipamento.identificador %>" type = 'checkbox' class = 'icheck-input'/></td>
                                 <td> <%= equipamento.identificador %> </td>
                                 <td> <%= equipamento.campus_origem %> </td>
                                 <td> <%= equipamento.data_compra %> </td>
-                                <td> A100 </td>
+                                <td> <%= equipamento.loc_sala %> </td>
                                 <td class = "text-center"><span class = "label label-success"> Disponível </span></td>
                                 <td> <%= equipamento.descricao %> </td>
                               </tr>
@@ -112,13 +128,17 @@
 
               <table id = "resultado" class = "table table-striped table-bordered table-hover table-checkable">
                 <tbody>
-                  <tr>
-                    <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "ID"> 11111 </td>
-                    <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Câmpus de Origem"> Campo Mourão </td>
-                    <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Data de Compra"> 14/02/2018 </td>
-                    <td class = "text-center"><span class = "label label-success ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Status"> Disponível </span></td>
-                    <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Descrição"> Computador </td>
-                  </tr>
+                  <% if(dataEscolhidos.length > 0) { %>
+                    <% dataEscolhidos.forEach(function(equipamento) { %>
+                      <tr>
+                        <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "ID"> <%= equipamento.identificador %> </td>
+                        <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Câmpus de Origem"> <%= equipamento.campus_origem %> </td>
+                        <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Data de Compra"> <%= equipamento.data_compra %> </td>
+                        <td class = "text-center"><span class = "label label-success ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Status"> Disponível </span></td>
+                        <td class = "ui-tooltip" data-toggle = "tooltip" data-placement = "top" title = "Descrição"> <%= equipamento.descricao %> </td>
+                      </tr>
+                    <% }); %>
+                  <% } %>
                 </tbody>
               </table>
 

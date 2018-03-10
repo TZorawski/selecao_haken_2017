@@ -25,6 +25,6 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/:id', controller_equipamento.listar_modal);
+router.get('/:id', controller_equipamento.listar_modal_movimento);
 
 module.exports = router;

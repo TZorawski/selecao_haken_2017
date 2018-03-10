@@ -13,11 +13,15 @@ router.get('/', function(req, res, next) {
   } */
 
   controller_equipamento.listar(function(err, resultsEquip) {
-    res.render('emprestimos', {
-      usuario: 'Vitor', //req.session.nome
-      dataEquipamento: resultsEquip
-    });
+      res.render('emprestimos', {
+        usuario: 'Vitor', //req.session.nome
+        dataEquipamento: resultsEquip,
+        dataEscolhidos: '',
+        scriptEmp: ''
+      });
   });
 });
+
+router.get('/:id', controller_equipamento.listar_modal_emprestimo);
 
 module.exports = router;

@@ -29,28 +29,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `sistema_haken`.`equipamento`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `sistema_haken`.`equipamento` ;
-
-CREATE TABLE IF NOT EXISTS `sistema_haken`.`equipamento` (
-  `identificador` INT NOT NULL,
-  `data_compra` DATE NOT NULL,
-  `descricao` TEXT(500) NOT NULL,
-  `status` INT NOT NULL,
-  `campus_origem` VARCHAR(20) NOT NULL,
-  `login` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`identificador`),
-  INDEX `fk_equipamento_usuario1_idx` (`login` ASC),
-  CONSTRAINT `fk_equipamento_usuario1`
-    FOREIGN KEY (`login`)
-    REFERENCES `sistema_haken`.`usuario` (`login`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `sistema_haken`.`sala`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `sistema_haken`.`sala` ;
@@ -65,6 +43,36 @@ CREATE TABLE IF NOT EXISTS `sistema_haken`.`sala` (
   CONSTRAINT `fk_sala_usuario1`
     FOREIGN KEY (`login`)
     REFERENCES `sistema_haken`.`usuario` (`login`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sistema_haken`.`equipamento`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sistema_haken`.`equipamento` ;
+
+CREATE TABLE IF NOT EXISTS `sistema_haken`.`equipamento` (
+  `identificador` INT NOT NULL,
+  `data_compra` DATE NOT NULL,
+  `descricao` TEXT(500) NOT NULL,
+  `status` INT NOT NULL,
+  `campus_origem` VARCHAR(20) NOT NULL,
+  `loc_campus` VARCHAR(20) NOT NULL,
+  `loc_sala` VARCHAR(4) NULL,
+  `login` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`identificador`),
+  INDEX `fk_equipamento_usuario1_idx` (`login` ASC),
+  INDEX `fk_equipamento_sala1_idx` (`loc_sala` ASC),
+  CONSTRAINT `fk_equipamento_usuario1`
+    FOREIGN KEY (`login`)
+    REFERENCES `sistema_haken`.`usuario` (`login`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_equipamento_sala1`
+    FOREIGN KEY (`loc_sala`)
+    REFERENCES `sistema_haken`.`sala` (`identificador`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

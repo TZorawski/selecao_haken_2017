@@ -3,7 +3,14 @@ var router = express.Router();
 
 // Abre pagina principal.
 router.get('/', function(req, res, next) {
-  res.render('index');
+  /* if(req.session.usuario == null) {
+    res.redirect("/usuario/login");
+    return;
+  } */
+
+  res.render('index', {
+    usuario: 'Vitor' //req.session.nome
+  });
 });
 
 module.exports = router;

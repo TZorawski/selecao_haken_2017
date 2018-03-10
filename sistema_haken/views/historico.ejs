@@ -7,6 +7,9 @@
     <script>
 		  $(document).ready(function() {
 		    $('.opcoes').addClass("active");
+        $('#s2_basic').change(function() {
+          $(location).attr('href', '/historico/' + $('#s2_basic').val());
+        });
 		  });
 		</script>
   </head>
@@ -33,10 +36,17 @@
               <label style = "font-size: 20px;"> Selecione o Equipamento... </label>
 
               <select id = "s2_basic" class = "form-control">
-                <optgroup label = "Equipamentos &nbsp;&nbsp; >> &nbsp;&nbsp; ID &nbsp;- &nbsp; Origem &nbsp;- &nbsp; Data Compra &nbsp;- &nbsp; Status &nbsp;- &nbsp; Descrição">
-
-                    <option value = "1111"> 11111 &nbsp;-&nbsp; Campo Mourão &nbsp;-&nbsp; 18/02/2018 &nbsp;-&nbsp; Emprestado &nbsp;-&nbsp; Computador </option>;
-
+                <optgroup label = "ID &nbsp;- &nbsp; Origem &nbsp;- &nbsp; Data Compra &nbsp;- &nbsp; Status &nbsp;- &nbsp; Descrição">
+                  <option value = ""> -- </option>
+                  <% dataEquipamento.forEach(function(equipamento) { %>
+                    <option value = "<%= equipamento.identificador %>">
+                      <%= equipamento.identificador %> &nbsp;-&nbsp;
+                      <%= equipamento.campus_origem %> &nbsp;-&nbsp;
+                      <%= equipamento.data_compra %> &nbsp;-&nbsp;
+                      <% if(equipamento.status == 0) { %> Disponível <% } else { %> Emprestado <% } %> &nbsp;-&nbsp;
+                      <%= equipamento.descricao %>
+                    </option>
+                  <% }); %>
                 </optgroup>
               </select>
             </div> <!-- /.form-group -->
@@ -44,51 +54,51 @@
           </div>
 
           <div class = "portlet portlet-plain">
+            <% if(dataMovimento.length > 0) { %>
+              <div class = "portlet-header">
+                <h3>
+                  <i class = "fa fa-clock-o"></i>
+                  Histórico de Movimentos
+                </h3>
+              </div> <!-- /.portlet-header -->
 
-            <div class = "portlet-header">
-              <h3>
-                <i class = "fa fa-clock-o"></i>
-                Histórico de Movimentos
-              </h3>
-            </div> <!-- /.portlet-header -->
+  		        <div class = "portlet-content">
+  		          <div class = "table-responsive">
+                  <table class = "table table-striped table-bordered table-hover table-checkable" data-provide = "datatable"
+                    data-display-rows = "10" data-info = "false" data-search = "true" data-length-change = "true" data-paginate = "true">
 
-		        <div class = "portlet-content">
-		          <div class = "table-responsive">
-                <table class = "table table-striped table-bordered table-hover table-checkable" data-provide = "datatable"
-                  data-display-rows = "10" data-info = "false" data-search = "true" data-length-change = "true" data-paginate = "true">
+                    <thead>
+                      <tr>
+                        <th data-filterable = "false" data-sortable = "false"> Equipamento </th>
+                        <th data-filterable = "true" data-sortable = "true"> Data Mov. </th>
+                        <th data-filterable = "true" data-sortable = "true" style = "width: 150px;"> Nova Localização </th>
+                        <th data-filterable = "true" data-sortable = "true"> Usuário </th>
+                        <th data-filterable = "true" data-sortable = "true" style = "width: 100px;"> Tipo </th>
+                      </tr>
+                    </thead>
 
-                  <thead>
-                    <tr>
-                      <th data-filterable = "false" data-sortable = "false"> Equipamento </th>
-                      <th data-filterable = "true" data-sortable = "true"> Data Mov. </th>
-                      <th data-filterable = "true" data-sortable = "true" style = "width: 150px;"> Nova Localização </th>
-                      <th data-filterable = "true" data-sortable = "true"> Usuário </th>
-                      <th data-filterable = "true" data-sortable = "true" style = "width: 100px;"> Tipo </th>
-                    </tr>
-                  </thead>
+                    <tbody>
+                      <% dataMovimento.forEach(function(movimento) { %>
+                        <tr>
+      										<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "rigth" title = "Mouse"> <%= movimento.equipamento %> </span></td>
+                          <td> <%= movimento.data %> </td>
+                          <% if(movimento.sala == null) { %>
+                            <td> <%= movimento.campus %> </td>
+        										<td> <%= movimento.nome %> </td>
+        										<td class = "text-center"><span class = "label label-warning"> Empréstimo </span></td>
+                          <% } else { %>
+                            <td> <%= movimento.sala %> </td>
+        										<td> <%= movimento.nome %> </td>
+        										<td class = "text-center"><span class = "label label-secondary"> Movimentação </span></td>
+                          <% } %>
+      									</tr>
+                      <% }); %>
+                    </tbody>
 
-                  <tbody>
-                    <tr>
-											<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "rigth" title = "Mouse"> 11111 </span></td>
-                      <td> 10/01/2017 </td>
-                      <td> Toledo </td>
-											<td> Rafael </td>
-											<td class = "text-center"><span class = "label label-warning"> Empréstimo </span></td>
-										</tr>
-
-                    <tr>
-											<td><span class = "ui-tooltip" data-toggle = "tooltip" data-placement = "rigth" title = "Mouse"> 11111 </span></td>
-                      <td> 10/01/2017 </td>
-                      <td> B002 </td>
-											<td> Willian </td>
-											<td class = "text-center"><span class = "label label-secondary"> Movimentação </span></td>
-										</tr>
-
-                  </tbody>
-
-                </table>
-		          </div>
-		        </div>
+                  </table>
+  		          </div>
+  		        </div>
+            <% } %>
           </div>
 
         </div> <!-- /.content-container -->

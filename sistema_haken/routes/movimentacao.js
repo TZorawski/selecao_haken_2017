@@ -4,10 +4,27 @@ var router = express.Router();
 //Obtem controllers
 var controller_movimentacao = require('../controllers/controller_movimentacao');
 var controller_equipamento = require('../controllers/controller_equipamento');
+var controller_sala = require('../controllers/controller_sala');
 
 router.get('/', function(req, res, next) {
-    var equipamentos = controller_equipamento.listar();
-    res.render('movimentacao');
+  /* if(req.session.usuario == null) {
+    res.redirect("/usuario/login");
+    return;
+  } */
+
+  controller_equipamento.listar(function(err, resultsEquip) {
+    controller_sala.listar(function(err, resultsSala) {
+      res.render('movimentacao', {
+        usuario: 'Vitor',  //req.session.nome
+        dataEquipamento: resultsEquip,
+        dataSala: resultsSala,
+        dataEscolhidos: '',
+        scriptMov: ''
+      });
+    });
+  });
 });
+
+router.get('/:id', controller_equipamento.listar_modal);
 
 module.exports = router;

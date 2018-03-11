@@ -8,13 +8,13 @@ exports.listar = function(callback) {
 };
 
 exports.criar_post = function(req, res, next) {
-	/* if(req.session.usuario == null) {
+	if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
 	var post = req.body;
-	var sql = "INSERT INTO sala SET identificador = UPPER('" + post.bloco + post.numero + "'), numero = '" + post.numero + "', bloco = UPPER('" + post.bloco + "'), login = '1921860'"; //req.session.login
+	var sql = "INSERT INTO sala SET identificador = UPPER('" + post.bloco + post.numero + "'), numero = '" + post.numero + "', bloco = UPPER('" + post.bloco + "'), login = '" + req.session.usuario + "'";
 
 	var messtatus = 'danger';
   var mes;
@@ -30,7 +30,7 @@ exports.criar_post = function(req, res, next) {
 		controller_sala.listar(function(err, resultsSala) {
 			res.render('cadastros', {
 	     		title: 'Salas/Laboratórios',
-					usuario: 'Vitor', //req.session.nome
+					usuario: req.session.nome,
 	      	scriptButton: '#cad-sala',
 	      	scriptTab: '#sala-tab',
 	        dataSala: resultsSala,
@@ -42,10 +42,10 @@ exports.criar_post = function(req, res, next) {
 };
 
 exports.remover_get = function(req, res, next) {
-	/* if(req.session.usuario == null) {
+	if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   var id  = req.params.id;
 
@@ -63,7 +63,7 @@ exports.remover_get = function(req, res, next) {
     controller_equipamento.listar(function(err, resultsEquip) {
       controller_sala.listar(function(err, resultsSala) {
         res.render('pesquisa', {
-					usuario: 'Vitor', //req.session.nome
+					usuario: req.session.nome,
           scriptEdit: '',
           dataEquipamento: resultsEquip,
           dataSala: resultsSala,
@@ -78,10 +78,10 @@ exports.remover_get = function(req, res, next) {
 };
 
 exports.edicao_get = function(req, res, next) {
-	/* if(req.session.usuario == null) {
+	if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   var id  = req.params.id;
 
@@ -92,7 +92,7 @@ exports.edicao_get = function(req, res, next) {
 	    controller_sala.listar(function(err, resultsSala) {
 	      db.query(sql, function(err, results) {
 	        res.render('pesquisa', {
-	          usuario: 'Vitor', //req.session.nome
+	          usuario: req.session.nome,
 	          scriptEdit: '#editSala',
 	          dataEquipamento: resultsEquip,
 	          dataSala: resultsSala,
@@ -108,10 +108,10 @@ exports.edicao_get = function(req, res, next) {
 };
 
 exports.editar_post = function (req, res, next) {
-	/* if(req.session.usuario == null) {
+	if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
 	var post = req.body;
 
@@ -129,7 +129,7 @@ exports.editar_post = function (req, res, next) {
 		controller_equipamento.listar(function(err, resultsEquip) {
       controller_sala.listar(function(err, resultsSala) {
         res.render('pesquisa', {
-          usuario: 'Vitor', //req.session.nome
+          usuario: req.session.nome,
           scriptEdit: '',
           dataEquipamento: resultsEquip,
           dataSala: resultsSala,
@@ -152,7 +152,7 @@ exports.pesquisar_post = function (req, res, next) {
     controller_equipamento.listar(function(err, resultsEquip) {
       db.query(sql, function(err, results) {
         res.render('relatorio', {
-          usuario: 'Vitor', //req.session.nome
+          usuario: req.session.nome,
           pesquisaTexto: valor,
           scriptRelatorio: '',
           dataSala: results,

@@ -16,7 +16,7 @@ exports.listarPorSalas = function(req, res, next) {
     controller_equipamento.listar(function(err, resultsEquip) {
       db.query(sql, function(err, results) {
         res.render('relatorio', {
-          usuario: 'Vitor', //req.session.nome
+          usuario: req.session.nome,
           pesquisaTexto: '',
           scriptRelatorio: '#relatorioGeral',
           dataSala: resultsSala,
@@ -29,15 +29,15 @@ exports.listarPorSalas = function(req, res, next) {
 };
 
 exports.criar_post = function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   var post  = req.body;
 
-  var sql = "INSERT INTO equipamento SET data_compra = STR_TO_DATE('" + post.data + "', '%d/%m/%Y'), identificador = '" + post.identificador + "', descricao = '" + post.descricao + "', status = 0, campus_origem = '" + post.origem + "', loc_sala = '" + post.localizacao + "', loc_campus = 'Campo Mourão', login = '1921924'"; //req.session.login
-  var sqlM = "INSERT INTO movimentacao SET identificador = null, data = NOW(), campus = 'Campo Mourão', equipamento = '" + post.identificador + "', sala = '" + post.localizacao + "', login = '1921924'"; //req.session.login
+  var sql = "INSERT INTO equipamento SET data_compra = STR_TO_DATE('" + post.data + "', '%d/%m/%Y'), identificador = '" + post.identificador + "', descricao = '" + post.descricao + "', status = 0, campus_origem = '" + post.origem + "', loc_sala = '" + post.localizacao + "', loc_campus = 'Campo Mourão', login = '" + req.session.usuario + "'";
+  var sqlM = "INSERT INTO movimentacao SET identificador = null, data = NOW(), campus = 'Campo Mourão', equipamento = '" + post.identificador + "', sala = '" + post.localizacao + "', login = '" + req.session.usuario + "'";
   var messtatus = 'danger';
   var mes;
 
@@ -52,7 +52,7 @@ exports.criar_post = function(req, res, next) {
 
     controller_sala.listar(function(err, resultsSala) {
       res.render('cadastros', {
-        usuario: 'Vitor', //req.session.nome
+        usuario: req.session.nome,
         title: 'Equipamentos',
         scriptButton: '#cad-equipamento',
         scriptTab: '#equipamento-tab',
@@ -65,10 +65,10 @@ exports.criar_post = function(req, res, next) {
 };
 
 exports.remover_get = function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   var id  = req.params.id;
 
@@ -86,7 +86,7 @@ exports.remover_get = function(req, res, next) {
     controller_equipamento.listar(function(err, resultsEquip) {
       controller_sala.listar(function(err, resultsSala) {
         res.render('pesquisa', {
-          usuario: 'Vitor', //req.session.nome
+          usuario: req.session.nome,
           scriptEdit: '',
           dataEquipamento: resultsEquip,
           dataSala: resultsSala,
@@ -101,10 +101,10 @@ exports.remover_get = function(req, res, next) {
 };
 
 exports.edicao_get = function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   var id  = req.params.id;
 
@@ -114,7 +114,7 @@ exports.edicao_get = function(req, res, next) {
     controller_sala.listar(function(err, resultsSala) {
       db.query(sql, function(err, results) {
         res.render('pesquisa', {
-          usuario: 'Vitor', //req.session.nome
+          usuario: req.session.nome,
           scriptEdit: '#editEquipamento',
           dataEquipamento: resultsEquip,
           dataSala: resultsSala,
@@ -129,10 +129,10 @@ exports.edicao_get = function(req, res, next) {
 };
 
 exports.editar_post = function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   var post = req.body;
   console.log("alo", req.body);
@@ -151,7 +151,7 @@ exports.editar_post = function(req, res, next) {
     controller_equipamento.listar(function(err, resultsEquip) {
       controller_sala.listar(function(err, resultsSala) {
         res.render('pesquisa', {
-          usuario: 'Vitor', //req.session.nome
+          usuario: req.session.nome,
           scriptEdit: '',
           dataEquipamento: resultsEquip,
           dataSala: resultsSala,
@@ -166,26 +166,24 @@ exports.editar_post = function(req, res, next) {
 };
 
 exports.listar_modal_movimento = function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   var lista_id = (req.params.id).split(",");
 
   if(lista_id.length == 0) res.redirect("/movimentacao");
 
   var sql = "SELECT *, DATE_FORMAT(data_compra,'%d/%m/%Y') AS data_compra FROM equipamento WHERE identificador = " + lista_id[0];
-  for(var i = 1; i < lista_id.length; i++) {
-    sql += " OR identificador = " + lista_id[i];
-  }
-  sql+= " ORDER BY identificador";
+  for(var i = 1; i < lista_id.length; i++) sql += " OR identificador = " + lista_id[i];
+  sql += " ORDER BY identificador";
 
   controller_equipamento.listar(function(err, resultsEquip) {
     controller_sala.listar(function(err, resultsSala) {
       db.query(sql, function(err, results) {
         res.render('movimentacao', {
-          usuario: 'Vitor',  //req.session.nome
+          usuario: req.session.nome,
           dataEquipamento: resultsEquip,
           dataSala: resultsSala,
           dataEscolhidos: results,
@@ -199,12 +197,12 @@ exports.listar_modal_movimento = function(req, res, next) {
 };
 
 exports.listar_modal_emprestimo = function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
-  var lista_id = (req.params.id).split(",");
+  var lista_id = req.params.id.split(",");
 
   if(lista_id.length == 0) {
     res.redirect("/emprestimos");
@@ -212,17 +210,12 @@ exports.listar_modal_emprestimo = function(req, res, next) {
   }
 
   var sql = "SELECT *, DATE_FORMAT(data_compra,'%d/%m/%Y') AS data_compra FROM equipamento WHERE identificador = " + lista_id[0];
-  for(var i = 1; i < lista_id.length; i++) {
-    sql += " OR identificador = " + lista_id[i];
-  }
-
+  for(var i = 1; i < lista_id.length; i++) sql += " OR identificador = " + lista_id[i];
 
   controller_equipamento.listar(function(err, resultsEquip) {
     db.query(sql, function(err, results) {
-      console.log("oi", results);
-      console.log("ola", resultsEquip);
       res.render('emprestimos', {
-        usuario: 'Vitor', //req.session.nome
+        usuario: req.session.nome,
         dataEquipamento: resultsEquip,
         dataEscolhidos: results,
         message_status: '',

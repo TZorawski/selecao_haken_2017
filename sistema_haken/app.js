@@ -34,7 +34,7 @@ app.use(session({
               secret: 'macho_alfa',
               resave: false,
               saveUninitialized: true,
-              cookie: { maxAge: 60000 }
+              cookie: { maxAge: new Date(Date.now() + (60 * 1000 * 15)) }
             }))
 
 // view engine setup

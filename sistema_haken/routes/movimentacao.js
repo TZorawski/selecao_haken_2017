@@ -7,10 +7,10 @@ var controller_equipamento = require('../controllers/controller_equipamento');
 var controller_sala = require('../controllers/controller_sala');
 
 router.get('/', function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  } 
 
   controller_equipamento.listar(function(err, resultsEquip) {
     controller_sala.listar(function(err, resultsSala) {

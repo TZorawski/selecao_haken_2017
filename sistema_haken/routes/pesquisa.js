@@ -7,15 +7,15 @@ var controller_sala = require('../controllers/controller_sala');
 
 // Abre página de pesquisa.
 router.get('/', function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   controller_equipamento.listar(function(err, resultsEquip) {
     controller_sala.listar(function(err, resultsSala) {
       res.render('pesquisa', {
-        usuario: 'Vitor',  //req.session.nome
+        usuario: req.session.nome,
         scriptEdit: '',
         dataEquipamento: resultsEquip,
         dataSala: resultsSala,

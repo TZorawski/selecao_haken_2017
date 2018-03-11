@@ -7,15 +7,15 @@ var controller_equipamento = require('../controllers/controller_equipamento');
 
 // Abre página de relatório.
 router.get('/', function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   controller_sala.listar(function(err, resultsSala) {
     controller_equipamento.listar(function(err, resultsEquip) {
       res.render('relatorio', {
-        usuario: 'Vitor', //req.session.nome
+        usuario: req.session.nome,
         pesquisaTexto: '',
         scriptRelatorio: '',
         dataSala: resultsSala,

@@ -3,13 +3,13 @@ var router = express.Router();
 
 // Abre pagina principal.
 router.get('/', function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   res.render('index', {
-    usuario: 'Vitor' //req.session.nome
+    usuario: req.session.nome
   });
 });
 

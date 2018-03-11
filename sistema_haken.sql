@@ -35,7 +35,7 @@ DROP TABLE IF EXISTS `sistema_haken`.`sala` ;
 
 CREATE TABLE IF NOT EXISTS `sistema_haken`.`sala` (
   `identificador` VARCHAR(4) NOT NULL,
-  `numero` INT(3) NOT NULL,
+  `numero` VARCHAR(3) NOT NULL,
   `bloco` VARCHAR(1) NOT NULL,
   `login` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`identificador`),
@@ -129,4 +129,3 @@ USE `sistema_haken`;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-

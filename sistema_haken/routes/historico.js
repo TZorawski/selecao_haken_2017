@@ -7,14 +7,14 @@ var controller_equipamento = require('../controllers/controller_equipamento');
 
 // Abre página de histórico.
 router.get('/', function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   controller_equipamento.listar(function(err, resultsEquip) {
     res.render('historico', {
-      usuario: 'Vitor', //req.session.nome
+      usuario: req.session.nome,
       dataEquipamento: resultsEquip,
       dataMovimento: ''
     });

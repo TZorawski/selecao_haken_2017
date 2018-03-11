@@ -7,14 +7,14 @@ var controller_equipamento = require('../controllers/controller_equipamento');
 
 // Abre página de empréstimos.
 router.get('/', function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  } 
 
   controller_equipamento.listar(function(err, resultsEquip) {
     res.render('emprestimos', {
-      usuario: 'Vitor', //req.session.nome
+      usuario: req.session.nome,
       dataEquipamento: resultsEquip,
       dataEscolhidos: '',
       message_status: '',

@@ -9,15 +9,15 @@ var controller_sala = require('../controllers/controller_sala');
 
 //Abre cadastro de equipamentos.
 router.get('/equipamento', function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   controller_sala.listar(function(err, resultsSala) {
     res.render('cadastros', {
       title: 'Equipamentos',
-      usuario: 'Vitor',  //req.session.nome
+      usuario: req.session.nome,
       scriptButton: '#cad-equipamento',
       scriptTab: '#equipamento-tab',
       dataSala: resultsSala,
@@ -34,15 +34,15 @@ router.post('/cadastrarEquipamento', controller_equipamento.criar_post);
 
 //Abre cadastro de salas.
 router.get('/sala', function(req, res, next) {
-  /* if(req.session.usuario == null) {
+  if(req.session.usuario == null) {
     res.redirect("/usuario/login");
     return;
-  } */
+  }
 
   controller_sala.listar(function(err, resultsSala) {
     res.render('cadastros', {
       title: 'Salas/Laboratórios',
-      usuario: 'Vitor', //req.session.nome
+      usuario: req.session.nome,
       scriptButton: '#cad-sala',
       scriptTab: '#sala-tab',
       dataSala: resultsSala,

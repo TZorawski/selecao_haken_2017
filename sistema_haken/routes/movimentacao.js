@@ -15,10 +15,12 @@ router.get('/', function(req, res, next) {
   controller_equipamento.listar(function(err, resultsEquip) {
     controller_sala.listar(function(err, resultsSala) {
       res.render('movimentacao', {
-        usuario: 'Vitor',  //req.session.nome
+        usuario: req.session.nome,
         dataEquipamento: resultsEquip,
         dataSala: resultsSala,
         dataEscolhidos: '',
+        message_status: '',
+        message: '',
         scriptMov: ''
       });
     });
@@ -26,5 +28,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', controller_equipamento.listar_modal_movimento);
+
+router.post('/', controller_movimentacao.mover);
 
 module.exports = router;

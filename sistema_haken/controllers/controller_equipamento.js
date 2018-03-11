@@ -171,9 +171,7 @@ exports.listar_modal_movimento = function(req, res, next) {
     return;
   } */
 
-  var lista_id_html = req.params.id;
-  var lista_id = lista_id_html.split(",");
-  console.log("###########lista: ", lista_id);
+  var lista_id = (req.params.id).split(",");
 
   if(lista_id.length == 0) res.redirect("/movimentacao");
 
@@ -181,6 +179,7 @@ exports.listar_modal_movimento = function(req, res, next) {
   for(var i = 1; i < lista_id.length; i++) {
     sql += " OR identificador = " + lista_id[i];
   }
+  sql+= " ORDER BY identificador";
 
   controller_equipamento.listar(function(err, resultsEquip) {
     controller_sala.listar(function(err, resultsSala) {
@@ -190,6 +189,8 @@ exports.listar_modal_movimento = function(req, res, next) {
           dataEquipamento: resultsEquip,
           dataSala: resultsSala,
           dataEscolhidos: results,
+          message_status: '',
+          message: '',
           scriptMov: '#mov'
         });
       });
@@ -203,26 +204,30 @@ exports.listar_modal_emprestimo = function(req, res, next) {
     return;
   } */
 
-  var lista_id_html = req.params.id;
-  var lista_id = lista_id_html.split(",");
-  console.log("###########lista: ", lista_id);
+  var lista_id = (req.params.id).split(",");
 
-  if(lista_id.length == 0) res.redirect("/emprestimos");
+  if(lista_id.length == 0) {
+    res.redirect("/emprestimos");
+    return;
+  }
 
   var sql = "SELECT *, DATE_FORMAT(data_compra,'%d/%m/%Y') AS data_compra FROM equipamento WHERE identificador = " + lista_id[0];
   for(var i = 1; i < lista_id.length; i++) {
     sql += " OR identificador = " + lista_id[i];
   }
 
+
   controller_equipamento.listar(function(err, resultsEquip) {
-    controller_sala.listar(function(err, resultsSala) {
-      db.query(sql, function(err, results) {
-        res.render('emprestimos', {
-          usuario: 'Vitor',  //req.session.nome
-          dataEquipamento: resultsEquip,
-          dataEscolhidos: results,
-          scriptEmp: '#emp'
-        });
+    db.query(sql, function(err, results) {
+      console.log("oi", results);
+      console.log("ola", resultsEquip);
+      res.render('emprestimos', {
+        usuario: 'Vitor', //req.session.nome
+        dataEquipamento: resultsEquip,
+        dataEscolhidos: results,
+        message_status: '',
+        message: '',
+        scriptEmp: '#emp'
       });
     });
   });
